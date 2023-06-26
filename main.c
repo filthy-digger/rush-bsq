@@ -11,14 +11,36 @@
 /* ************************************************************************** */
 #include "lib.h"
 
+// t_map	get_map(char *map_string, t_specification specification)
+//{
+//
+//}
+
+ t_specification get_spec(char *map_string)
+{
+	t_char_vector first_line;
+	first_line.start = map_string;
+	first_line.end = strchr(map_string, '\n');
+	first_line.current = first_line.start;
+	t_specification specification;
+	specification.full = first_line.end[-1];
+	specification.obstacle = first_line.end[-2];
+	specification.empty = first_line.end[-3];
+
+}
 int	main(int argc, char **argv)
 {
 	int i;
 	int fd;
 	char *map_string;
 	size_t file_size;
+	t_specification specification;
+	specification.number_of_lines = 9;
+	specification.empty = '.';
+	specification.obstacle = 'o';
+	specification.full = 'x';
 
-	i = 0;
+	i = 1;
 	if (argc != 1)
 	{
 		while (i < argc)
@@ -27,23 +49,20 @@ int	main(int argc, char **argv)
 			if (check_open_file(fd) == false || check_read_file(fd) == false)
 			{
 				ft_putstr("map error\n");
+				return (1);
 			}
 			file_size = get_file_size(fd);
-
 			fd = open(argv[i], O_RDONLY);
 			if (!check_open_file(fd) || !check_read_file(fd))
 			{
 				ft_putstr("map error\n");
+				return (1);
 			}
 			map_string = get_file_string(fd, file_size);
-//			if (file_size == 257)
-//				printf("true");
-//			close(fd);
-//			size_t lines = ft_count_char(map_string, '\n');
-//			if (map_string[0] == '9')
-//				printf("true");
+			size_t num_lines = ft_count_char(map_string, '\n');
+			ft_putsize(num_lines);
 			free(map_string);
-//			ft_putnbr(lines);
+			//			ft_putnbr(lines);
 			/*
 						if (fd > 0) // check if map is valid
 						{
@@ -57,6 +76,7 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
+		//		read(0, );
 		/*
 				Should there be no passed arguments,
 					your program must be able to read on the standard input

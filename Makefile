@@ -12,18 +12,18 @@
 
 NAME = bsq
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c\
  file_lib.c\
  clio_lib.c\
  string_lib.c\
  temp_lib.c\
  map_lib.c\
+ vec_lib.c\
  lib.c
 # dict_lib.c\
 # entry_lib.c\
 # value_lib.c\
-# vec_lib.c\
 # mem_lib.c
 HEADERS = lib.h
 FILES = $(SRCS) $(HEADERS)
