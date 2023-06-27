@@ -11,15 +11,6 @@
 /* ************************************************************************** */
 #include "lib.h"
 
-bool	check_value_arg(char *str)
-{
-	while (*str == ' ' || (*str >= '\t' & *str <= '\r'))
-		str++;
-	while (*str == '+')
-		str++;
-	return (*str >= '0' && *str <= '9');
-}
-
 int	ft_ctoi(char c)
 {
 	return (c - '0');
@@ -49,14 +40,3 @@ char	ft_itoc(int i)
 {
 	return ((char)(i + '0'));
 }
-/*
-i = 1;
-while (i < (value.end - value.current) && value.current[i] == 0)
-{
-if (value.current[i] != 0)
-{
-all_zeros = false;
-}
-i++;
-}
-*/

@@ -21,28 +21,6 @@ size_t	int_vec_length(t_int_vector vec)
 {
 	return (vec.end - vec.start);
 }
-t_int_vector	ft_strv_to_intv(t_char_vector str)
-{
-	t_int_vector	res_vec;
-
-	res_vec.start = malloc((str.end - str.start) * sizeof(int));
-	if (res_vec.start == NULL)
-	{
-		errno = ENOMEM;
-		return (res_vec);
-	}
-	res_vec.current = res_vec.start;
-	//	while (*str == ' ' || (*str >= '\t' & *str <= '\r'))
-	//		str++;
-	//	while (*str == '+')
-	//		str++;
-	//	while (*str == '0')
-	//		*res_vec.current = ft_ctoi(*str++);
-	while (*str.current >= '0' && *str.current <= '9')
-		*((res_vec.current)++) = ft_ctoi(*(str.current++));
-	res_vec.end = res_vec.current;
-	return (res_vec);
-}
 
 unsigned long	ft_power(unsigned int b, unsigned int e)
 {

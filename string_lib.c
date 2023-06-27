@@ -25,7 +25,6 @@ size_t	ft_strlen(const char *str)
 }
 
 // count occurences of char "chr" in string "str"
-// used for counting '\n' in a dict string to get dict.size for get_dict
 size_t	ft_count_char(char *str, char chr)
 {
 	size_t	counter;
