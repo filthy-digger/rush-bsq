@@ -101,7 +101,7 @@ char				*get_file_string(int fd, size_t file_size);
 
 void				*ft_memcpy(void *dst0, const void *src0, size_t size);
 
-void				get_map_obstacle_count(int x, int y, char map_string[y][x]);
+void				get_map_obstacle_count(int x, int y, const char **map_string);
 
 void				ft_putsize(size_t size);
 

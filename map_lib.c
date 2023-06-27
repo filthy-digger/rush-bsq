@@ -12,7 +12,7 @@
 
 #include "lib.h"
 
-void	get_map_obstacle_count(int x, int y, char map_string[y][x])
+void	get_map_obstacle_count(int x, int y, const char **map_string)
 {
 	int		**arr;
 	int		size;
