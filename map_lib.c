@@ -130,58 +130,52 @@ int	get_obstacles(int *const *arr, t_point a, t_point b, t_point c, t_point d)
 	return arr[d.y][d.x];
 }
 
-int get_size(t_point a, t_point b, t_point c, t_point d)
-{
 /*
           a.x = c.x | b.x = d.x
 	-----------------------
 	|             |    |  |
-	|   A         | B  |  |
-	|_____________|____|  |  a.y = b.y
 	|             |    |  |
-	|    C        |  D |  |
-	|_____________|____|  |  d.y = c.y
+	|_____________a____b  |  a.y = b.y
+	|             |    |  |
+	|             |    |  |
+	|_____________c____d  |  d.y = c.y
 	|_____________________|
-*/
-	if (a.x >= 0 && a.y >= 0)
-		return d.y - a.y;
-/*
 				d.x = b.x
 	-----------------------
 	|             |       |
-	|   B         |       |
-	|_____________|       |  b.y
 	|             |       |
-	|    D        |       |
-	|_____________|       |  d.y
+	|_____________b       |  b.y
+	|             |       |
+	|             |       |
+	|_____________d       |  d.y
 	|_____________________|
-*/
-	else if (b.x >= 0 && b.y >= 0)
-		return d.y - b.y;
-/*
 			     c.x  d.x
 	-----------------------
 	|             |    |  |
-	|   C         | D  |  |
-	|_____________|____|  |  d.y = c.y
+	|             |    |  |
+	|_____________c____d  |  d.y = c.y
 	|                     |
 	|                     |
 	|                     |
 	|_____________________|
-*/
-	else if (c.x >= 0 && c.y >= 0)
-		return d.x - c.x;
-/*
-				  d.x
+        d.x
 	-----------------------
 	|                     |
 	|----|                |
-	|  D |                |  d.y
-	|----|                |
+	|    |                |
+	|----d                |  d.y
 	|                     |
 	|                     |
 	|_____________________|
 */
+int get_size(t_point a, t_point b, t_point c, t_point d)
+{
+	if (a.x >= 0 && a.y >= 0)
+		return d.y - a.y;
+	else if (b.x >= 0 && b.y >= 0)
+		return d.y - b.y;
+	else if (c.x >= 0 && c.y >= 0)
+		return d.x - c.x;
 	if (d.y > d.x)
 		return d.x + 1;
 	else
