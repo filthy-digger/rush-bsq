@@ -140,6 +140,7 @@ int	main(int argc, char **argv)
 						  "...........................................o........................................................",
 						  "...................................................................................................."
 	};
+//	(void) str;
 //	"20.ox",
 /*
 char str[20][20]	= {
@@ -184,7 +185,7 @@ char str[20][20]	= {
 	//						"............",
 	//						"............"};
 	get_map_obstacle_count(100, 100, str);
-
+	return 0;
 	i = 1;
 	if (argc != 1)
 	{
@@ -211,29 +212,30 @@ char str[20][20]	= {
 			i++;
 		}
 	}
-	/*
-		else
+	else
+	{
+		file_size = 1;
+		map_string = malloc(file_size);
+		ssize_t last_read_status = read(0, map_string, 1);
+		char *new_map_string;
+		while (last_read_status != 0)
 		{
-			file_size = 1;
-			map_string = malloc(file_size);
-			last_read_status = read(0, map_string, 1);
-			while (last_read_status != 0)
+			if (last_read_status == -1)
 			{
-				if (last_read_status == -1)
-				{
-					ft_putstr("map error\n");
-					free(map_string);
-					return (1);
-				}
-				new_map_string = malloc(file_size + 1);
-				memcpy(new_map_string, map_string, file_size);
-				last_read_status = read(0, new_map_string + file_size, 1);
+				ft_putstr("map error\n");
 				free(map_string);
-				map_string = new_map_string;
-				file_size++;
+				return (1);
 			}
-			ft_putstr(map_string);
+			new_map_string = malloc(file_size + 1);
+			ft_memcpy(new_map_string, map_string, file_size);
+			last_read_status = read(0, new_map_string + file_size, 1);
+			free(map_string);
+			map_string = new_map_string;
+			file_size++;
 		}
-		return (0);
-	*/
+		map_string[file_size-1] = '\0';
+		ft_putstrn(map_string, file_size);
+		ft_putsize(file_size);
+	}
+	return (0);
 }
