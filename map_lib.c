@@ -16,6 +16,7 @@ void	get_map_obstacle_count(int x, int y, char map_string[y][x])
 {
 	int	**arr;
 	int	size;
+	t_point  d;
 
 	arr = malloc(y * sizeof(int *));
 	for (int i = 0; i < y; i++)
@@ -72,11 +73,43 @@ void	get_map_obstacle_count(int x, int y, char map_string[y][x])
 		printf("\n");
 	}
 	printf("\n");
-	t_point  d;
-	d.y = 2;
-	d.x = 7;
-	size = get_best_size(arr,d);
-	printf("%d", size);
+	d.x = 0;
+	d.y = 0;
+	int best_size = 0;
+	t_point best_d;
+	while (d.y < y)
+	{
+		d.x = 0;
+		while (d.x < x)
+		{
+			size = get_best_size(arr,d);
+			if (size > best_size)
+			{
+				best_size = size;
+				best_d = d;
+			}
+			d.x++;
+		}
+		d.y++;
+	}
+	printf("%d", best_size);
+	printf("\n");
+	i = 0;
+	while (i < y)
+	{
+		j = 0;
+		while (j < x)
+		{
+			if (best_size && (j <= best_d.x) && (best_d.x - best_size < j)
+				&& (i <= best_d.y) && (best_d.y - best_size < i))
+				printf("x");
+			else
+				printf("%c", map_string[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
 	printf("\n");
 }
 
@@ -111,9 +144,7 @@ int get_size(t_point a, t_point b, t_point c, t_point d)
 	|_____________________|
 */
 	if (a.x >= 0 && a.y >= 0)
-	{
 		return d.y - a.y;
-	}
 /*
 				d.x = b.x
 	-----------------------
@@ -126,9 +157,7 @@ int get_size(t_point a, t_point b, t_point c, t_point d)
 	|_____________________|
 */
 	else if (b.x >= 0 && b.y >= 0)
-	{
 		return d.y - b.y;
-	}
 /*
 			     c.x  d.x
 	-----------------------
@@ -141,21 +170,22 @@ int get_size(t_point a, t_point b, t_point c, t_point d)
 	|_____________________|
 */
 	else if (c.x >= 0 && c.y >= 0)
-	{
 		return d.x - c.x;
-	}
 /*
 				  d.x
 	-----------------------
-	|         |           |
-	|   D     |           |
-	|_________|           |  d.y
 	|                     |
+	|----|                |
+	|  D |                |  d.y
+	|----|                |
 	|                     |
 	|                     |
 	|_____________________|
 */
-	else return d.y;
+	if (d.y > d.x)
+		return d.x + 1;
+	else
+		return d.y + 1;
 }
 
 int get_best_size(int *const *arr, t_point d)
@@ -171,7 +201,7 @@ int get_best_size(int *const *arr, t_point d)
 	b.y = a.y;
 	c.x = a.x;
 	c.y = d.y;
-	while (get_obstacles(arr,a,b,c,d) == 0)
+	while (get_obstacles(arr,a,b,c,d) == 0 && (a.x >= -1 && a.y >= -1))
 	{
 		best_size = get_size(a,b,c,d);
 		a.x--;
