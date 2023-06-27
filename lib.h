@@ -160,7 +160,7 @@ typedef struct s_point
 	int y;
 } t_point;
 
-int get_best_size(int *const *arr, int d_y, int d_x);
+int get_best_size(int *const *arr,t_point d);
 
 int	get_obstacles(int *const *arr, t_point a, t_point b, t_point c, t_point d);
 
