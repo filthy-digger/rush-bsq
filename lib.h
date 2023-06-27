@@ -154,4 +154,5 @@ void get_map_obstacle_count(int x, int y, char map_string[y][x]);
 
 void				ft_putsize(size_t size);
 
+int get_best_size(int *const *arr, int d_y, int d_x);
 #endif
