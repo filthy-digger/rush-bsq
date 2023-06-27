@@ -22,7 +22,8 @@ SRCS = main.c\
  vec_lib.c\
  mem_lib.c\
  lib.c\
- map_lib.c
+ map_lib.c\
+ spec_lib.c
 # dict_lib.c\
 # entry_lib.c\
 # value_lib.c\
