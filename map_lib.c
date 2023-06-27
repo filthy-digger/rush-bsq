@@ -12,30 +12,22 @@
 
 #include "lib.h"
 
-void get_map_obstacle_count()
+void get_map_obstacle_count(int x, int y, char map_string[y][x])
 {
-	char str[6][12] = {
-			"...........o",
-			".......o....",
-			"............",
-			"...o........",
-			"............",
-			"............"
-	};
-	int		**arr = malloc(6 * sizeof(int *));
-	for (int i = 0; i < 6; i++)
+	int		**arr = malloc(y * sizeof(int *));
+	for (int i = 0; i < y; i++)
 	{
-		arr[i] = malloc(12 * sizeof(int));
+		arr[i] = malloc(x * sizeof(int));
 	}
 
 	int j, i = 0;
 
-	while(i < 6)
+	while(i < y)
 	{
 		j = 0;
-		while(j < 12)
+		while(j < x)
 		{
-			printf("%c", str[i][j]);
+			printf("%c", map_string[i][j]);
 			j++;
 		}
 		i++;
@@ -44,14 +36,14 @@ void get_map_obstacle_count()
 	printf("\n");
 
 	i = 0;
-	while(i < 6)
+	while(i < y)
 	{
 		j = 0;
-		while(j < 12)
+		while(j < x)
 		{
-			if (str[i][j] == '.')
+			if (map_string[i][j] == '.')
 				arr[i][j] = 0;
-			if (str[i][j] == 'o')
+			if (map_string[i][j] == 'o')
 				arr[i][j] = 1;
 			printf("%d", arr[i][j]);
 			j++;
@@ -63,24 +55,42 @@ void get_map_obstacle_count()
 
 
 	i = 0;
-	while(i < 6)
+	while(i < y)
 	{
 		j = 0;
-		while(j < 12)
+		while(j < x)
 		{
-			if ((i == 0) && (j != 0))
-			{
-				arr[i][j] = arr[i][j] + arr[i][j - 1];
-			}
-			else if ((i != 0) && (j == 0))
-			{
-				arr[i][j] = arr[i][j] + arr[i - 1][j];
-			}
-			else if ((i != 0) && (j != 0))
-			{
+			if ((i != 0) && (j != 0))
 				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] -
 							arr[i - 1][j - 1];
-			}
+			else if (j != 0)
+				arr[i][j] = arr[i][j] + arr[i][j - 1];
+			else if (i != 0)
+				arr[i][j] = arr[i][j] + arr[i - 1][j];
+			printf("%d", arr[i][j]);
+			j++;
+		}
+		i++;
+		printf("\n");
+	}
+	printf("\n");
+
+
+	i = 0;
+	int best_size = 0;
+	int size = 0;
+	while(i < y)
+	{
+		j = 0;
+		while(j < x)
+		{
+			if ((i != 0) && (j != 0))
+				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] -
+							arr[i - 1][j - 1];
+			else if (j != 0)
+				arr[i][j] = arr[i][j] + arr[i][j - 1];
+			else if (i != 0)
+				arr[i][j] = arr[i][j] + arr[i - 1][j];
 			printf("%d", arr[i][j]);
 			j++;
 		}

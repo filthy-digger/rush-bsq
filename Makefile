@@ -20,11 +20,12 @@ SRCS = main.c\
  temp_lib.c\
  map_lib.c\
  vec_lib.c\
- lib.c
+ mem_lib.c\
+ lib.c\
+ map_lib.c
 # dict_lib.c\
 # entry_lib.c\
 # value_lib.c\
-# mem_lib.c
 HEADERS = lib.h
 FILES = $(SRCS) $(HEADERS)
 

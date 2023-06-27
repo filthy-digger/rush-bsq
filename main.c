@@ -16,31 +16,50 @@
 //
 //}
 
- t_specification get_spec(char *map_string)
+t_specification	get_spec(char *map_string)
 {
-	t_char_vector first_line;
+	t_char_vector	first_line;
+	t_specification	specification;
+
 	first_line.start = map_string;
 	first_line.end = strchr(map_string, '\n');
 	first_line.current = first_line.start;
-	t_specification specification;
 	specification.full = first_line.end[-1];
 	specification.obstacle = first_line.end[-2];
 	specification.empty = first_line.end[-3];
-
+	return (specification);
 }
 int	main(int argc, char **argv)
 {
-	int i;
+	(void)argc;
+	(void)argv;
+/*
 	int fd;
-	char *map_string;
+	int i;
+	char	*map_string;
+	char	*new_map_string;
 	size_t file_size;
+	ssize_t last_read_status;
 	t_specification specification;
 	specification.number_of_lines = 9;
 	specification.empty = '.';
 	specification.obstacle = 'o';
 	specification.full = 'x';
+*/
 
-	i = 1;
+	char str[6][12] = {
+			"...........o",
+			".......o....",
+			"............",
+			"...o........",
+			"............",
+			"............"
+	};
+	get_map_obstacle_count( 12, 6, str);
+	return 0;
+//	i = 1;
+
+/*
 	if (argc != 1)
 	{
 		while (i < argc)
@@ -63,24 +82,42 @@ int	main(int argc, char **argv)
 			ft_putsize(num_lines);
 			free(map_string);
 			//			ft_putnbr(lines);
-			/*
+			*/
+/*
 						if (fd > 0) // check if map is valid
 						{
 							str = read...(fd, ..);
 							... function to find square close(fd);
 						}
 						else
-			*/
+			*//*
+
 			i++;
 		}
+//		while(true);
 	}
 	else
 	{
-		//		read(0, );
-		/*
-				Should there be no passed arguments,
-					your program must be able to read on the standard input
-		*/
+		file_size = 1;
+		map_string = malloc(file_size);
+		last_read_status = read(0, map_string, 1);
+		while (last_read_status != 0)
+		{
+			if (last_read_status == -1)
+			{
+				ft_putstr("map error\n");
+				free(map_string);
+				return (1);
+			}
+			new_map_string = malloc(file_size + 1);
+			memcpy(new_map_string, map_string, file_size);
+			last_read_status = read(0, new_map_string + file_size, 1);
+			free(map_string);
+			map_string = new_map_string;
+			file_size++;
+		}
+		ft_putstr(map_string);
 	}
 	return (0);
+*/
 }
