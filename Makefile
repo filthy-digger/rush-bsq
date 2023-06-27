@@ -20,7 +20,7 @@ SRCS = main.c\
  temp_lib.c\
  map_lib.c\
  vec_lib.c\
- mem_lib.c\
+ ft_memcpy.c\
  lib.c\
  map_lib.c\
  spec_lib.c

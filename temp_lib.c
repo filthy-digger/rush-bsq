@@ -50,5 +50,5 @@ void	ft_putsize(size_t size)
 	r = size % 10;
 	if (q > 0)
 		ft_putsize(q);
-	ft_putchar(ft_itoc(r));
+	ft_putchar(ft_stoc(r));
 }

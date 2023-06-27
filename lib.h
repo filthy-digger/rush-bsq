@@ -22,6 +22,12 @@
 # include <string.h>
 # include <unistd.h>
 
+typedef struct s_point
+{
+	int				x;
+	int				y;
+}					t_point;
+
 typedef struct s_int_vector
 {
 	int				*start;
@@ -78,6 +84,7 @@ size_t				int_vec_length(t_int_vector vec);
 
 int					ft_ctoi(char c);
 
+// Switch int to char in ASCII (+ 48)
 char				ft_itoc(int i);
 
 size_t				strnlen_until_char(const char *str, char c, size_t n);
@@ -92,21 +99,19 @@ bool				check_open_file(int fd);
 
 char				*get_file_string(int fd, size_t file_size);
 
-void	*ft_memcpy(void *dst0, const void *src0, size_t size);
+void				*ft_memcpy(void *dst0, const void *src0, size_t size);
 
-void get_map_obstacle_count(int x, int y, char map_string[y][x]);
+void				get_map_obstacle_count(int x, int y, char map_string[y][x]);
 
 void				ft_putsize(size_t size);
 
-typedef struct s_point
-{
-	int x;
-	int y;
-} t_point;
+int					get_best_size(int *const *arr, t_point d);
 
-int get_best_size(int *const *arr,t_point d);
+int					get_obstacles(int *const *arr, t_point a, t_point b,
+						t_point c, t_point d);
 
-int	get_obstacles(int *const *arr, t_point a, t_point b, t_point c, t_point d);
+int					get_size(t_point a, t_point b, t_point c, t_point d);
 
-int	get_size(t_point a, t_point b, t_point c, t_point d);
+// Switch int to char in ASCII (+ 48)
+char				ft_stoc(size_t size);
 #endif

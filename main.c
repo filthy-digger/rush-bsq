@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 			map_string = new_map_string;
 			file_size++;
 		}
-		map_string[file_size-1] = '\0';
+		map_string[file_size - 1] = '\0';
 		ft_putstrn(map_string, file_size);
 		ft_putsize(file_size);
 	}
