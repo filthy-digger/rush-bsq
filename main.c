@@ -16,19 +16,6 @@
 //
 //}
 
-t_specification	get_spec(char *map_string)
-{
-	t_char_vector	first_line;
-	t_specification	specification;
-
-	first_line.start = map_string;
-	first_line.end = strchr(map_string, '\n');
-	first_line.current = first_line.start;
-	specification.full = first_line.end[-1];
-	specification.obstacle = first_line.end[-2];
-	specification.empty = first_line.end[-3];
-	return (specification);
-}
 int	main(int argc, char **argv)
 {
 	int fd;
@@ -67,28 +54,8 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		file_size = 1;
-		map_string = malloc(file_size);
-		ssize_t last_read_status = read(0, map_string, 1);
-		char *new_map_string;
-		while (last_read_status != 0)
-		{
-			if (last_read_status == -1)
-			{
-				ft_putstr("map error\n");
-				free(map_string);
-				return (1);
-			}
-			new_map_string = malloc(file_size + 1);
-			ft_memcpy(new_map_string, map_string, file_size);
-			last_read_status = read(0, new_map_string + file_size, 1);
-			free(map_string);
-			map_string = new_map_string;
-			file_size++;
-		}
-		map_string[file_size - 1] = '\0';
-		ft_putstrn(map_string, file_size);
-		ft_putsize(file_size);
+		map_string = get_stdin_string();
+		ft_putstr(map_string);
 	}
 	return (0);
 }

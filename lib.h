@@ -114,4 +114,10 @@ int					get_size(t_point a, t_point b, t_point c, t_point d);
 
 // Switch int to char in ASCII (+ 48)
 char				ft_stoc(size_t size);
+
+unsigned long	ft_power(unsigned int b, unsigned int e);
+
+t_specification	get_spec(char *map_string);
+
+char	*get_stdin_string(void);
 #endif

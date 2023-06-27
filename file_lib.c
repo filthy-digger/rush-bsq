@@ -65,21 +65,51 @@ size_t	get_file_size(int fd)
 
 char	*get_file_string(int fd, size_t file_size)
 {
-	char	*dict_str;
+	char	*file_str;
 
 	if (file_size == 0)
 		return (NULL);
-	dict_str = malloc((file_size + 1) * sizeof(char));
-	if (dict_str == NULL)
+	file_str = malloc((file_size + 1) * sizeof(char));
+	if (file_str == NULL)
 	{
 		errno = ENOMEM;
 		return (NULL);
 	}
-	if (read(fd, dict_str, (file_size + 1) * sizeof(char)) < 0)
+	if (read(fd, file_str, (file_size + 1) * sizeof(char)) < 0)
 	{
-		free(dict_str);
+		free(file_str);
 		close(fd);
 		return (NULL);
 	}
-	return (dict_str);
+	file_str[file_size] = '\0';
+	return (file_str);
+}
+
+char	*get_stdin_string(void)
+{
+	size_t	file_size;
+	ssize_t	last_read_status;
+	char	*map_string;
+	char	*new_map_string;
+
+	file_size = 1;
+	map_string = malloc(file_size);
+	last_read_status = read(0, map_string, 1);
+	while (last_read_status != 0)
+	{
+		if (last_read_status == -1)
+		{
+			ft_putstr("map error\n");
+			free(map_string);
+			return (NULL);
+		}
+		new_map_string = malloc(file_size + 1);
+		ft_memcpy(new_map_string, map_string, file_size);
+		last_read_status = read(0, new_map_string + file_size, 1);
+		free(map_string);
+		map_string = new_map_string;
+		file_size++;
+	}
+	map_string[file_size - 1] = '\0';
+	return (map_string);
 }
