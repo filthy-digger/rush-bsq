@@ -19,11 +19,13 @@ void	get_map_obstacle_count(int x, int y, char map_string[y][x])
 	t_point  d;
 
 	arr = malloc(y * sizeof(int *));
-	for (int i = 0; i < y; i++)
+	int j, i = 0;
+	while (i < y)
 	{
 		arr[i] = malloc(x * sizeof(int));
+		i++;
 	}
-	int j, i = 0;
+	i = 0;
 	while (i < y)
 	{
 		j = 0;
