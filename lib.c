@@ -39,6 +39,12 @@ size_t	repeat_char_n(const char *str, char c, size_t n)
 }
 
 // Switch int to char in ASCII (+ 48)
+char	ft_stoc(size_t size)
+{
+	return ((char)(size + '0'));
+}
+
+// Switch int to char in ASCII (+ 48)
 char	ft_itoc(int i)
 {
 	return ((char)(i + '0'));
