@@ -69,17 +69,3 @@ void	*ft_memmove(void *dst0, const void *src0, size_t size)
 		return (dst0);
 	}
 }
-
-// give space memory to dst0 with malloc
-void	*ft_realloc(void *src, size_t src_size, size_t new_size)
-{
-	void	*dst;
-
-	dst = malloc(new_size);
-	if (dst == NULL)
-	{
-		errno = ENOMEM;
-		return (NULL);
-	}
-	return ((ft_memcpy(dst, src, src_size)));
-}

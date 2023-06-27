@@ -127,14 +127,9 @@ void				sort_dict(t_dict dict);
 
 int					ft_strncmp(char *s1, char *s2, unsigned int n);
 
-t_entry				*get_key_entry(t_dict dict, char *key, size_t key_length);
-
 size_t				int_vec_length(t_int_vector vec);
 
 void				show_value_for_dict(t_int_vector value, t_dict dict);
-
-char				*make_key(t_int_vector value, bool fill_zeros,
-						bool use_current, size_t n);
 
 int					ft_ctoi(char c);
 char				ft_itoc(int i);
@@ -151,16 +146,12 @@ bool				check_open_file(int fd);
 
 char				*get_file_string(int fd, size_t file_size);
 
-void				parse_args(char **dict_path_dest, char **value_str_dest,
-						int argc, char **argv);
-
 void	*ft_memmove(void *dst0, const void *src0, size_t size);
 
 void	*ft_memcpy(void *dst0, const void *src0, size_t size);
 
-void	*ft_realloc(void *src, size_t src_size, size_t new_size);
-
 void get_map_obstacle_count(int x, int y, char map_string[y][x]);
 
 void				ft_putsize(size_t size);
+
 #endif

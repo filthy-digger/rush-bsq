@@ -25,24 +25,6 @@ int	ft_ctoi(char c)
 	return (c - '0');
 }
 
-void	parse_args(char **dict_path_dest, char **value_str_dest, int argc,
-		char **argv)
-{
-	if ((argc == 3) && check_value_arg(argv[2]))
-	{
-		*dict_path_dest = argv[1];
-		*value_str_dest = (argv[2]);
-	}
-	else if ((argc == 2) && check_value_arg(argv[1]))
-		*value_str_dest = (argv[1]);
-	else if (argc == 1)
-		ft_puterr("too few arguments");
-	else if (argc > 3)
-		ft_puterr("too many arguments");
-	else
-		ft_puterr("invalid value argument");
-}
-
 size_t	repeat_char_n(const char *str, char c, size_t n)
 {
 	size_t	size;

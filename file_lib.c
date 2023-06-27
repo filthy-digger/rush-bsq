@@ -65,19 +65,17 @@ size_t	get_file_size(int fd)
 
 char	*get_file_string(int fd, size_t file_size)
 {
-	ssize_t	last_read_status;
 	char	*dict_str;
 
 	if (file_size == 0)
 		return (NULL);
-	dict_str = malloc(file_size * sizeof(char));
+	dict_str = malloc((file_size + 1) * sizeof(char));
 	if (dict_str == NULL)
 	{
 		errno = ENOMEM;
 		return (NULL);
 	}
-	last_read_status = read(fd, dict_str, file_size * sizeof(char));
-	if (last_read_status < 0)
+	if (read(fd, dict_str, (file_size + 1) * sizeof(char)) < 0)
 	{
 		free(dict_str);
 		close(fd);

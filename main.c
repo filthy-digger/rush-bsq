@@ -31,35 +31,36 @@ t_specification	get_spec(char *map_string)
 }
 int	main(int argc, char **argv)
 {
-	(void)argc;
-	(void)argv;
-/*
 	int fd;
 	int i;
-	char	*map_string;
-	char	*new_map_string;
+	char *map_string;
+//	char *new_map_string;
 	size_t file_size;
-	ssize_t last_read_status;
-	t_specification specification;
-	specification.number_of_lines = 9;
-	specification.empty = '.';
-	specification.obstacle = 'o';
-	specification.full = 'x';
-*/
+//	ssize_t last_read_status;
+//	t_specification specification;
 
-	char str[6][12] = {
-			"...........o",
-			".......o....",
-			"............",
-			"...o........",
-			"............",
-			"............"
+	char str[9][27] = {
+	"...........................",
+	"....o......................",
+	"............o..............",
+	"...........................",
+	"....o......................",
+	"...............o...........",
+	"...........................",
+	"......o..............o.....",
+	"..o.......o................"
 	};
-	get_map_obstacle_count( 12, 6, str);
-	return 0;
-//	i = 1;
+//	ft_putsize(sizeof(str) / 9);
+//	return 0;
+//	char str[6][12] = {"...........o",
+//					   ".......o....",
+//					   "............",
+//					   "...o........",
+//					   "............",
+//					   "............"};
+	get_map_obstacle_count(sizeof(str) / 9, 9, str);
 
-/*
+	i = 1;
 	if (argc != 1)
 	{
 		while (i < argc)
@@ -80,44 +81,34 @@ int	main(int argc, char **argv)
 			map_string = get_file_string(fd, file_size);
 			size_t num_lines = ft_count_char(map_string, '\n');
 			ft_putsize(num_lines);
+			//				check if map is valid
 			free(map_string);
-			//			ft_putnbr(lines);
-			*/
-/*
-						if (fd > 0) // check if map is valid
-						{
-							str = read...(fd, ..);
-							... function to find square close(fd);
-						}
-						else
-			*//*
-
 			i++;
 		}
-//		while(true);
 	}
-	else
-	{
-		file_size = 1;
-		map_string = malloc(file_size);
-		last_read_status = read(0, map_string, 1);
-		while (last_read_status != 0)
+	/*
+		else
 		{
-			if (last_read_status == -1)
+			file_size = 1;
+			map_string = malloc(file_size);
+			last_read_status = read(0, map_string, 1);
+			while (last_read_status != 0)
 			{
-				ft_putstr("map error\n");
+				if (last_read_status == -1)
+				{
+					ft_putstr("map error\n");
+					free(map_string);
+					return (1);
+				}
+				new_map_string = malloc(file_size + 1);
+				memcpy(new_map_string, map_string, file_size);
+				last_read_status = read(0, new_map_string + file_size, 1);
 				free(map_string);
-				return (1);
+				map_string = new_map_string;
+				file_size++;
 			}
-			new_map_string = malloc(file_size + 1);
-			memcpy(new_map_string, map_string, file_size);
-			last_read_status = read(0, new_map_string + file_size, 1);
-			free(map_string);
-			map_string = new_map_string;
-			file_size++;
+			ft_putstr(map_string);
 		}
-		ft_putstr(map_string);
-	}
-	return (0);
-*/
+		return (0);
+	*/
 }

@@ -12,9 +12,9 @@
 
 #include "lib.h"
 
-void get_map_obstacle_count(int x, int y, char map_string[y][x])
+void	get_map_obstacle_count(int x, int y, char map_string[y][x])
 {
-	int		**arr = malloc(y * sizeof(int *));
+	int **arr = malloc(y * sizeof(int *));
 	for (int i = 0; i < y; i++)
 	{
 		arr[i] = malloc(x * sizeof(int));
@@ -22,10 +22,10 @@ void get_map_obstacle_count(int x, int y, char map_string[y][x])
 
 	int j, i = 0;
 
-	while(i < y)
+	while (i < y)
 	{
 		j = 0;
-		while(j < x)
+		while (j < x)
 		{
 			printf("%c", map_string[i][j]);
 			j++;
@@ -36,10 +36,10 @@ void get_map_obstacle_count(int x, int y, char map_string[y][x])
 	printf("\n");
 
 	i = 0;
-	while(i < y)
+	while (i < y)
 	{
 		j = 0;
-		while(j < x)
+		while (j < x)
 		{
 			if (map_string[i][j] == '.')
 				arr[i][j] = 0;
@@ -53,16 +53,15 @@ void get_map_obstacle_count(int x, int y, char map_string[y][x])
 	}
 	printf("\n");
 
-
 	i = 0;
-	while(i < y)
+	while (i < y)
 	{
 		j = 0;
-		while(j < x)
+		while (j < x)
 		{
 			if ((i != 0) && (j != 0))
-				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] -
-							arr[i - 1][j - 1];
+				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] - arr[i
+					- 1][j - 1];
 			else if (j != 0)
 				arr[i][j] = arr[i][j] + arr[i][j - 1];
 			else if (i != 0)
@@ -75,18 +74,16 @@ void get_map_obstacle_count(int x, int y, char map_string[y][x])
 	}
 	printf("\n");
 
-
 	i = 0;
 	int best_size = 0;
 	int size = 0;
-	while(i < y)
+	while (i < y)
 	{
 		j = 0;
-		while(j < x)
+		while (j < x)
 		{
 			if ((i != 0) && (j != 0))
-				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] -
-							arr[i - 1][j - 1];
+				arr[i][j] = arr[i][j] + arr[i][j - 1] + arr[i - 1][j] - arr[i - 1][j - 1];
 			else if (j != 0)
 				arr[i][j] = arr[i][j] + arr[i][j - 1];
 			else if (i != 0)
