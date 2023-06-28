@@ -12,29 +12,29 @@
 
 #include "lib.h"
 
-void	get_map_obstacle_count(int x, int y, const char **map_string)
+void get_map_obstacle_count(t_map map)
 {
 	int	**arr;
 	int	i;
 
-	arr = malloc(y * sizeof(int *));
+	arr = malloc(map.spec.number_of_lines * sizeof(int *));
 	if (arr == NULL)
 	{
 		ft_putstr("malloc error");
 		exit(0);
 	}
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
-		arr[i] = malloc(x * sizeof(int));
+		arr[i] = malloc(map.spec.line_length * sizeof(int));
 		i++;
 	}
-	//	print_map(x, y, map_string);
-	preset_obstacles(x, y, map_string, arr);
-	set_all_obstacle_count(x, y, arr);
-	show_solution(x, y, map_string, get_best_solution(x, y, arr));
+	//	print_map(map.spec.line_length, map.spec.number_of_lines, map.lines);
+	preset_obstacles(arr, map);
+	set_all_obstacle_count(map, arr);
+	show_solution(get_best_solution(arr, map), map);
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
 		free(arr[i]);
 		i++;
@@ -42,24 +42,23 @@ void	get_map_obstacle_count(int x, int y, const char **map_string)
 	free(arr);
 }
 
-void	show_solution(int x, int y, const char **map_string,
-		t_solution solution)
+void show_solution(t_solution solution, t_map map)
 {
 	int	j;
 	int	i;
 
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
 		j = 0;
-		while (j < x)
+		while (j < map.spec.line_length)
 		{
 			if (solution.size && (j <= (solution.d).x) && ((solution.d).x
 					- solution.size < j) && (i <= (solution.d).y)
 				&& ((solution.d).y - solution.size < i))
-				ft_putchar('x');
+				ft_putchar(map.spec.full);
 			else
-				ft_putchar(map_string[i][j]);
+				ft_putchar(map.lines[i][j]);
 			j++;
 		}
 		i++;
@@ -67,7 +66,7 @@ void	show_solution(int x, int y, const char **map_string,
 	}
 }
 
-t_solution	get_best_solution(int x, int y, int **arr)
+t_solution get_best_solution(int **arr, t_map map)
 {
 	t_solution	best_solution;
 	t_solution	solution;
@@ -75,10 +74,10 @@ t_solution	get_best_solution(int x, int y, int **arr)
 	solution.d.x = 0;
 	solution.d.y = 0;
 	(best_solution.size) = 0;
-	while (solution.d.y < y)
+	while (solution.d.y < map.spec.number_of_lines)
 	{
 		solution.d.x = 0;
-		while (solution.d.x < x)
+		while (solution.d.x < map.spec.line_length)
 		{
 			solution.size = get_best_size(arr, solution.d);
 			if (solution.size > (best_solution.size))
@@ -93,16 +92,16 @@ t_solution	get_best_solution(int x, int y, int **arr)
 	return (best_solution);
 }
 
-void	set_all_obstacle_count(int x, int y, int **obstacle_matrix)
+void	set_all_obstacle_count(t_map map, int **obstacle_matrix)
 {
 	int	j;
 	int	i;
 
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
 		j = 0;
-		while (j < x)
+		while (j < map.spec.line_length)
 		{
 			if ((i != 0) && (j != 0))
 				obstacle_matrix[i][j] = obstacle_matrix[i][j]
@@ -120,21 +119,20 @@ void	set_all_obstacle_count(int x, int y, int **obstacle_matrix)
 	}
 }
 
-void	preset_obstacles(int x, int y, const char **map_string,
-		int **obstacle_matrix)
+void preset_obstacles(int **obstacle_matrix, t_map map)
 {
 	int	j;
 	int	i;
 
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
 		j = 0;
-		while (j < x)
+		while (j < map.spec.line_length)
 		{
-			if (map_string[i][j] == '.')
+			if (map.lines[i][j] == map.spec.empty)
 				obstacle_matrix[i][j] = 0;
-			if (map_string[i][j] == 'o')
+			if (map.lines[i][j] == map.spec.obstacle)
 				obstacle_matrix[i][j] = 1;
 			j++;
 		}

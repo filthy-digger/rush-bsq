@@ -54,23 +54,6 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	return (0);
 }
 
-// Have size with number of char
-// until ':' and '\n'
-size_t	strlen_until_char(const char *str, char c)
-{
-	size_t	size;
-
-	size = 0;
-	while (*str && *str != c)
-	{
-		str++;
-		++size;
-	}
-	if (*str == '\0')
-		return (-1);
-	return (size);
-}
-
 size_t	strnlen_until_char(const char *str, char c, size_t n)
 {
 	size_t	size;

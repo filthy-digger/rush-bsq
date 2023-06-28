@@ -85,13 +85,6 @@ typedef struct s_point
 	int						y;
 }							t_point;
 
-typedef struct s_int_vector
-{
-	int						*start;
-	int						*current;
-	int						*end;
-}							t_int_vector;
-
 typedef struct s_char_vector
 {
 	const char				*start;
@@ -117,12 +110,6 @@ typedef struct s_map
 	const char				**lines;
 }							t_map;
 
-typedef struct s_linked_list
-{
-	void					*data;
-	struct s_linked_list	*next;
-}							t_linked_list;
-
 typedef struct s_solution
 {
 	int						size;
@@ -145,8 +132,6 @@ void						ft_putstr(const char *str);
 
 void						ft_putstrn(const char *str, size_t n);
 
-size_t						strlen_until_char(const char *str, char c);
-
 size_t						char_vec_length(t_char_vector vec);
 
 void						ft_putnbr_aux(int n);
@@ -158,8 +143,6 @@ size_t						ft_count_char(const char *str, char chr);
 void						ft_puterr(char *error_detail);
 
 int							ft_strncmp(char *s1, char *s2, unsigned int n);
-
-size_t						int_vec_length(t_int_vector vec);
 
 int							ft_ctoi(char c);
 
@@ -182,8 +165,7 @@ char						*get_file_string(int fd, size_t file_size);
 void						*ft_memcpy(void *dst0, const void *src0,
 								size_t size);
 
-void						get_map_obstacle_count(int x, int y,
-								const char **map_string);
+void get_map_obstacle_count(t_map map);
 
 void						ft_putsize(size_t size);
 
@@ -206,16 +188,13 @@ char						*get_stdin_string(void);
 
 void						print_map(t_map map);
 
-void						preset_obstacles(int x, int y,
-								const char **map_string, int **obstacle_matrix);
+void preset_obstacles(int **obstacle_matrix, t_map map);
 
-void						set_all_obstacle_count(int x, int y,
-								int **obstacle_matrix);
+void						set_all_obstacle_count(t_map map, int **obstacle_matrix);
 
-t_solution					get_best_solution(int x, int y, int **arr);
+t_solution get_best_solution(int **arr, t_map map);
 
-void						show_solution(int x, int y, const char **map_string,
-								t_solution solution);
+void show_solution(t_solution solution, t_map map);
 
 const char					*ft_strchr(const char *str, char c);
 
