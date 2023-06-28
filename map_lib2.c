@@ -12,33 +12,54 @@
 
 #include "lib.h"
 
+bool	alloc_arr(t_map *map, int i, int ***arr);
+
 void	ft_get_map_obstacle_count(t_map map)
 {
-	int	**arr;
+	int	**matrix;
 	int	i;
 
-	arr = malloc(map.spec.n * sizeof(int *));
-	if (arr == NULL)
-	{
-		ft_putstr("malloc error");
-		exit(0);
-	}
+	if (!alloc_arr(&map, 0, &matrix))
+		return ;
+	ft_preset_obstacles(matrix, map);
+	ft_set_all_obstacle_count(map, matrix);
+	ft_show_solution(ft_get_best_solution(matrix, map), map);
 	i = 0;
 	while (i < map.spec.n)
 	{
-		arr[i] = malloc(map.spec.len * sizeof(int));
+		free(matrix[i]);
 		i++;
 	}
-	ft_preset_obstacles(arr, map);
-	ft_set_all_obstacle_count(map, arr);
-	ft_show_solution(ft_get_best_solution(arr, map), map);
-	i = 0;
-	while (i < map.spec.n)
+	free(matrix);
+}
+
+bool	alloc_arr(t_map *map, int i, int ***arr)
+{
+	*arr = malloc(map->spec.n * sizeof(int *));
+	if (*arr == NULL)
 	{
-		free(arr[i]);
+		ft_putstr("map error\n");
+		return (false);
+	}
+	i = 0;
+	while (i < map->spec.n)
+	{
+		(*arr)[i] = malloc(map->spec.len * sizeof(int));
+		if ((*arr)[i] == NULL)
+			break ;
 		i++;
 	}
-	free(arr);
+	if (i != map->spec.n && (*arr)[i--] == NULL)
+	{
+		while (0 < i)
+		{
+			free((*arr)[i]);
+			i--;
+		}
+		free(*arr);
+		return (false);
+	}
+	return (true);
 }
 
 void	ft_show_solution(t_solution solution, t_map map)

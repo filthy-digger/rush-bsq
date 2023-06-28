@@ -26,6 +26,8 @@ bool	ft_check_read(int fd)
 	char	*buf;
 
 	buf = malloc(sizeof(char));
+	if (buf == NULL)
+		return (false);
 	if (read(fd, buf, 0) == -1)
 	{
 		free(buf);
@@ -42,6 +44,8 @@ size_t	ft_get_fsize(int fd)
 	size_t	file_size;
 
 	buf = malloc(sizeof(char));
+	if (buf == NULL)
+		return (0);
 	last_read_status = read(fd, buf, sizeof(char));
 	file_size = 0;
 	while (last_read_status != 0)
@@ -51,7 +55,7 @@ size_t	ft_get_fsize(int fd)
 			ft_putstr("map error\n");
 			close(fd);
 			free(buf);
-			return (1);
+			return (0);
 		}
 		last_read_status = read(fd, buf, sizeof(char));
 		file_size++;
@@ -70,8 +74,8 @@ char	*ft_get_file(int fd, size_t file_size)
 	file_str = malloc((file_size + 1) * sizeof(char));
 	if (file_str == NULL)
 	{
-		ft_putstr("malloc error");
-		exit(1);
+		close(fd);
+		return (NULL);
 	}
 	if (read(fd, file_str, (file_size + 1) * sizeof(char)) < 0)
 	{
@@ -80,6 +84,7 @@ char	*ft_get_file(int fd, size_t file_size)
 		return (NULL);
 	}
 	file_str[file_size] = '\0';
+	close(fd);
 	return (file_str);
 }
 
@@ -97,9 +102,9 @@ char	*ft_get_stdin_string(void)
 	{
 		if (last_read_status == -1)
 		{
-			ft_putstr("stdin read error\n");
+			ft_putstr("map error\n");
 			free(map_string);
-			exit(1);
+			return (NULL);
 		}
 		new_map_string = malloc(file_size + 1);
 		ft_memcpy(new_map_string, map_string, file_size);

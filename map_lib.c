@@ -12,8 +12,6 @@
 
 #include "lib.h"
 
-void	malloc_map(t_map *map);
-
 void	map_line_loop(t_map *m, char *line_end, int i, int j)
 {
 	int	line_length;
@@ -53,26 +51,23 @@ t_map	ft_make_map(char *map_string)
 	if (map.spec.valid)
 	{
 		line_end = ft_strchr(map_string, '\n');
-		malloc_map(&map);
+		(map).str = malloc((map).spec.n * sizeof(char *));
+		if (map.str == NULL)
+			return (map);
 		map_line_loop(&map, line_end, 0, 0);
 	}
 	return (map);
-}
-
-void	malloc_map(t_map *map)
-{
-	(*map).str = malloc((*map).spec.n * sizeof(char *));
-	if ((*map).str == NULL)
-	{
-		ft_puterr("malloc error");
-		exit(0);
-	}
 }
 
 void	map_solve(char *map_string)
 {
 	t_map	map;
 
+	if (map_string == NULL)
+	{
+		ft_putstr("map error\n");
+		return ;
+	}
 	(map) = ft_make_map(map_string);
 	if ((map).valid)
 	{

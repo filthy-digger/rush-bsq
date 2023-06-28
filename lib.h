@@ -176,4 +176,5 @@ char			*ft_strchr(char *str, char c);
 t_map			ft_make_map(char *map_string);
 
 void			map_solve(char *map_string);
+
 #endif

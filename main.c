@@ -36,9 +36,12 @@ int	main(int argc, char **argv)
 			if (fd != -1)
 			{
 				file_size = ft_get_fsize(fd);
-				fd = get_fd(argv[i]);
-				if (fd != -1)
-					map_solve(ft_get_file(fd, file_size));
+				if (file_size != 0)
+				{
+					fd = get_fd(argv[i]);
+					if (fd != -1)
+						map_solve(ft_get_file(fd, file_size));
+				}
 			}
 			i++;
 		}
