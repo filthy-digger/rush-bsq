@@ -45,7 +45,10 @@ char	*ft_get_file(int fd, size_t file_size)
 	char	*file_str;
 
 	if (file_size == 0)
+	{
+		close(fd);
 		return (NULL);
+	}
 	file_str = malloc((file_size + 1) * sizeof(char));
 	if (file_str == NULL)
 	{
