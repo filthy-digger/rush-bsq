@@ -130,13 +130,13 @@ void			ft_puterr(char *error_detail);
 
 int				ft_ctoi(char c);
 
-size_t			ft_get_file_size(int fd);
+size_t			ft_get_fsize(int fd);
 
-bool			ft_check_read_file(int fd);
+bool			ft_check_read(int fd);
 
-bool			ft_check_open_file(int fd);
+bool			ft_check_open(int fd);
 
-char			*ft_get_file_string(int fd, size_t file_size);
+char			*ft_get_file(int fd, size_t file_size);
 
 void			*ft_memcpy(void *dst0, const void *src0, size_t size);
 
@@ -174,4 +174,6 @@ void			ft_show_solution(t_solution solution, t_map map);
 char			*ft_strchr(char *str, char c);
 
 t_map			ft_make_map(char *map_string);
+
+void			map_solve(char *map_string);
 #endif

@@ -91,6 +91,7 @@ void	ft_set_all_obstacle_count(t_map map, int **obstacle_matrix)
 		i++;
 	}
 }
+
 void	ft_preset_obstacles(int **obstacle_matrix, t_map map)
 {
 	int	j;

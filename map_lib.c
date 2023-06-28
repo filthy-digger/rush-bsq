@@ -14,11 +14,11 @@
 
 t_map	ft_make_map(char *map_string)
 {
-	t_map map;
-	int i;
-	int j;
-	int line_length;
-	char *line_end;
+	t_map	map;
+	int		line_length;
+	char	*line_end;
+	int		i;
+	int		j;
 
 	map.spec = ft_make_spec(map_string);
 	map.valid = false;
@@ -58,4 +58,21 @@ t_map	ft_make_map(char *map_string)
 		}
 	}
 	return (map);
+}
+
+void	map_solve(char *map_string)
+{
+	t_map	map;
+
+	(map) = ft_make_map(map_string);
+	if ((map).valid)
+	{
+		ft_get_map_obstacle_count((map));
+		ft_putchar('\n');
+	}
+	else
+		ft_putstr("map error\n");
+	if ((map).spec.valid)
+		free((map).lines);
+	free(map_string);
 }

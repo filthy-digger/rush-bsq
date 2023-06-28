@@ -11,62 +11,39 @@
 /* ************************************************************************** */
 #include "lib.h"
 
+int	get_fd(char *path)
+{
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (!ft_check_open(fd) || !ft_check_read(fd))
+		ft_putstr("map error\n");
+	return (fd);
+}
+
 int	main(int argc, char **argv)
 {
-	int i;
-	int fd;
-	char *map_string;
-	size_t file_size;
-	t_map map;
+	int		i;
+	int		fd;
+	size_t	file_size;
 
 	if (argc != 1)
 	{
 		i = 1;
 		while (i < argc)
 		{
-			fd = open(argv[i], O_RDONLY);
-			if (ft_check_open_file(fd) == false
-				|| ft_check_read_file(fd) == false)
+			fd = get_fd(argv[i]);
+			if (fd != -1)
 			{
-				ft_putstr("map error\n");
-				return (1);
+				file_size = ft_get_fsize(fd);
+				fd = get_fd(argv[i]);
+				if (fd != -1)
+					map_solve(ft_get_file(fd, file_size));
 			}
-			file_size = ft_get_file_size(fd);
-			fd = open(argv[i], O_RDONLY);
-			if (!ft_check_open_file(fd) || !ft_check_read_file(fd))
-			{
-				ft_putstr("map error\n");
-				return (1);
-			}
-			map_string = ft_get_file_string(fd, file_size);
-			map = ft_make_map(map_string);
-			if (map.valid)
-			{
-				ft_get_map_obstacle_count(map);
-				ft_putchar('\n');
-			}
-			else
-				ft_putstr("map error\n");
-			if (map.spec.valid)
-				free(map.lines);
-			free(map_string);
 			i++;
 		}
 	}
 	else
-	{
-		map_string = ft_get_stdin_string();
-		map = ft_make_map(map_string);
-		if (map.valid)
-		{
-			ft_get_map_obstacle_count(map);
-			ft_putchar('\n');
-		}
-		else
-			ft_putstr("map error\n");
-		if (map.spec.valid)
-			free(map.lines);
-		free(map_string);
-	}
+		map_solve(ft_get_stdin_string());
 	return (0);
 }

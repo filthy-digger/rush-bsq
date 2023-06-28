@@ -18,7 +18,6 @@ SRCS = main.c\
  clio_lib.c\
  string_lib.c\
  temp_lib.c\
- map_lib.c\
  vec_lib.c\
  ft_memcpy.c\
  lib.c\
