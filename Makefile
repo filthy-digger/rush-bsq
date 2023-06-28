@@ -12,7 +12,7 @@
 
 NAME = bsq
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -Werror
 SRCS = main.c\
  file_lib.c\
  clio_lib.c\
