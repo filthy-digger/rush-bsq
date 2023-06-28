@@ -24,7 +24,7 @@ size_t	ft_strlen(const char *str)
 	return (str - save);
 }
 
-const char	*ft_strchr(const char *str, char c)
+char	*ft_strchr(char *str, char c)
 {
 	while (*str != '\0' && *str != c)
 		str++;

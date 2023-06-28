@@ -81,110 +81,97 @@
 */
 typedef struct s_point
 {
-	int				x;
-	int				y;
-}					t_point;
-
-typedef struct s_char_vector
-{
-	const char		*start;
-	const char		*current;
-	const char		*end;
-}					t_char_vector;
+	int			x;
+	int			y;
+}				t_point;
 
 typedef struct s_specification
 {
-	bool			valid;
-	char			empty;
-	char			obstacle;
-	char			full;
-	t_char_vector	first_line;
-	int				number_of_lines;
-	int				line_length;
-}					t_map_spec;
+	bool		valid;
+	char		empty;
+	char		obstacle;
+	char		full;
+	int			number_of_lines;
+	int			line_length;
+}				t_map_spec;
 
 typedef struct s_map
 {
-	bool			valid;
-	t_map_spec		spec;
-	const char		**lines;
-}					t_map;
+	bool		valid;
+	t_map_spec	spec;
+	char		**lines;
+}				t_map;
 
 typedef struct s_solution
 {
-	int				size;
-	t_point			d;
-}					t_solution;
+	int			size;
+	t_point		d;
+}				t_solution;
 
 typedef struct s_solver_spec
 {
-	t_point			a;
-	t_point			b;
-	t_point			c;
-	t_point			d;
-}					t_solver_spec;
+	t_point		a;
+	t_point		b;
+	t_point		c;
+	t_point		d;
+}				t_solver_spec;
 
-size_t				ft_strlen(const char *str);
+size_t			ft_strlen(const char *str);
 
-void				ft_putchar(char c);
+void			ft_putchar(char c);
 
-void				ft_putstr(const char *str);
+void			ft_putstr(const char *str);
 
-void				ft_putnbr_aux(int n);
+void			ft_putnbr_aux(int n);
 
-void				ft_putnbr(int nb);
+void			ft_putnbr(int nb);
 
-void				ft_puterr(char *error_detail);
+void			ft_puterr(char *error_detail);
 
-int					ft_ctoi(char c);
+int				ft_ctoi(char c);
 
-// Switch int to char in ASCII (+ 48)
-char				ft_itoc(int i);
+size_t			ft_get_file_size(int fd);
 
-size_t				repeat_char_n(const char *str, char c, size_t n);
+bool			ft_check_read_file(int fd);
 
-size_t				get_file_size(int fd);
+bool			ft_check_open_file(int fd);
 
-bool				check_read_file(int fd);
+char			*ft_get_file_string(int fd, size_t file_size);
 
-bool				check_open_file(int fd);
+void			*ft_memcpy(void *dst0, const void *src0, size_t size);
 
-char				*get_file_string(int fd, size_t file_size);
+void			ft_get_map_obstacle_count(t_map map);
 
-void				*ft_mymemcpy(void *dst0, const void *src0, size_t size);
+void			ft_putsize(size_t size);
 
-void				get_map_obstacle_count(t_map map);
+int				ft_get_best_size(int **arr, t_point d);
 
-void				ft_putsize(size_t size);
+int				ft_get_obstacles(int **arr, t_solver_spec spec);
 
-int					get_best_size(int **arr, t_point d);
-
-int					get_obstacles(int **arr, t_solver_spec spec);
-
-int					get_size(t_solver_spec solver_spec);
+int				ft_get_size(t_solver_spec solver_spec);
 
 // Switch int to char in ASCII (+ 48)
-char				ft_stoc(size_t size);
+char			ft_stoc(size_t size);
 
-unsigned long		ft_power(unsigned int b, unsigned int e);
+int				ft_power(int b, unsigned int e);
 
-t_map_spec			make_spec(const char *map_string);
+t_map_spec		ft_make_spec(char *map_string);
 
-void				show_spec(t_map_spec specification);
+void			ft_show_spec(t_map_spec specification);
 
-char				*get_stdin_string(void);
+char			*ft_get_stdin_string(void);
 
-void				print_map(t_map map);
+void			ft_print_map(t_map map);
 
-void				preset_obstacles(int **obstacle_matrix, t_map map);
+void			ft_preset_obstacles(int **obstacle_matrix, t_map map);
 
-void				set_all_obstacle_count(t_map map, int **obstacle_matrix);
+void			ft_set_all_obstacle_count(t_map map, int **obstacle_matrix);
 
-t_solution			get_best_solution(int **arr, t_map map);
+t_solution		ft_get_best_solution(int **arr, t_map map);
 
-void				show_solution(t_solution solution, t_map map);
+void			ft_show_solution(t_solution solution, t_map map);
 
-const char			*ft_strchr(const char *str, char c);
+char			*ft_strchr(char *str, char c);
 
-t_map				make_map(const char *map_string);
+t_map			ft_make_map(char *map_string);
 #endif

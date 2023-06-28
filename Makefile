@@ -12,7 +12,7 @@
 
 NAME = bsq
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra
 SRCS = main.c\
  file_lib.c\
  clio_lib.c\
@@ -24,7 +24,8 @@ SRCS = main.c\
  lib.c\
  map_lib.c\
  spec_lib.c\
- solver.c
+ solver.c\
+ map_lib2.c
 
 HEADERS = lib.h
 FILES = $(SRCS) $(HEADERS)

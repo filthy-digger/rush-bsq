@@ -12,7 +12,7 @@
 
 #include "lib.h"
 
-unsigned long	ft_power(unsigned int b, unsigned int e)
+int	ft_power(int b, unsigned int e)
 {
 	if (e == 0)
 		return (1);

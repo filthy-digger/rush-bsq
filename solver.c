@@ -12,7 +12,7 @@
 
 #include "lib.h"
 
-int	get_best_size(int **arr, t_point d)
+int	ft_get_best_size(int **arr, t_point d)
 {
 	t_solver_spec	solver_spec;
 	int				best_size;
@@ -25,10 +25,10 @@ int	get_best_size(int **arr, t_point d)
 	solver_spec.b.y = solver_spec.a.y;
 	solver_spec.c.x = solver_spec.a.x;
 	solver_spec.c.y = solver_spec.d.y;
-	while ((get_obstacles(arr, solver_spec) == 0) && (solver_spec.a.x >= -1)
+	while ((ft_get_obstacles(arr, solver_spec) == 0) && (solver_spec.a.x >= -1)
 		&& (solver_spec.a.y >= -1))
 	{
-		best_size = get_size(solver_spec);
+		best_size = ft_get_size(solver_spec);
 		solver_spec.a.x--;
 		solver_spec.a.y--;
 		solver_spec.b.y = solver_spec.a.y;
@@ -37,7 +37,7 @@ int	get_best_size(int **arr, t_point d)
 	return (best_size);
 }
 
-int	get_size(t_solver_spec solver_spec)
+int	ft_get_size(t_solver_spec solver_spec)
 {
 	if (solver_spec.a.x >= 0 && solver_spec.a.y >= 0)
 		return (solver_spec.d.y - solver_spec.a.y);
@@ -51,7 +51,7 @@ int	get_size(t_solver_spec solver_spec)
 		return (solver_spec.d.y + 1);
 }
 
-int	get_obstacles(int **arr, t_solver_spec spec)
+int	ft_get_obstacles(int **arr, t_solver_spec spec)
 {
 	if (spec.a.x >= 0 && spec.a.y >= 0)
 	{
@@ -69,7 +69,7 @@ int	get_obstacles(int **arr, t_solver_spec spec)
 	return (arr[spec.d.y][spec.d.x]);
 }
 
-t_solution	get_best_solution(int **arr, t_map map)
+t_solution	ft_get_best_solution(int **arr, t_map map)
 {
 	t_solution	best_solution;
 	t_solution	solution;
@@ -82,7 +82,7 @@ t_solution	get_best_solution(int **arr, t_map map)
 		solution.d.x = 0;
 		while (solution.d.x < map.spec.line_length)
 		{
-			solution.size = get_best_size(arr, solution.d);
+			solution.size = ft_get_best_size(arr, solution.d);
 			if (solution.size > (best_solution.size))
 			{
 				(best_solution.size) = solution.size;

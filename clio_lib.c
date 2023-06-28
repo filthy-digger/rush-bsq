@@ -30,7 +30,7 @@ void	ft_puterr(char *error_detail)
 	write(2, error_detail, ft_strlen(error_detail));
 }
 
-void	print_map(t_map map)
+void	ft_print_map(t_map map)
 {
 	int	j;
 	int	i;

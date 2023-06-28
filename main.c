@@ -25,23 +25,24 @@ int	main(int argc, char **argv)
 		while (i < argc)
 		{
 			fd = open(argv[i], O_RDONLY);
-			if (check_open_file(fd) == false || check_read_file(fd) == false)
+			if (ft_check_open_file(fd) == false
+				|| ft_check_read_file(fd) == false)
 			{
 				ft_putstr("map error\n");
 				return (1);
 			}
-			file_size = get_file_size(fd);
+			file_size = ft_get_file_size(fd);
 			fd = open(argv[i], O_RDONLY);
-			if (!check_open_file(fd) || !check_read_file(fd))
+			if (!ft_check_open_file(fd) || !ft_check_read_file(fd))
 			{
 				ft_putstr("map error\n");
 				return (1);
 			}
-			map_string = get_file_string(fd, file_size);
-			map = make_map(map_string);
+			map_string = ft_get_file_string(fd, file_size);
+			map = ft_make_map(map_string);
 			if (map.valid)
 			{
-				get_map_obstacle_count(map);
+				ft_get_map_obstacle_count(map);
 				ft_putchar('\n');
 			}
 			else
@@ -54,11 +55,11 @@ int	main(int argc, char **argv)
 	}
 	else
 	{
-		map_string = get_stdin_string();
-		map = make_map(map_string);
+		map_string = ft_get_stdin_string();
+		map = ft_make_map(map_string);
 		if (map.valid)
 		{
-			get_map_obstacle_count(map);
+			ft_get_map_obstacle_count(map);
 			ft_putchar('\n');
 		}
 		else
