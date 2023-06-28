@@ -71,7 +71,7 @@ size_t	strlen_until_char(const char *str, char c)
 
 size_t	strnlen_until_char(const char *str, char c, size_t n)
 {
-	size_t size;
+	size_t	size;
 
 	size = 0;
 	while (*str != c && n)

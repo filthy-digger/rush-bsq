@@ -188,8 +188,7 @@ void						ft_putsize(size_t size);
 
 int							get_best_size(int *const *arr, t_point d);
 
-int	get_obstacles(int *const *arr,
-					t_solver_spec solver_spec);
+int							get_obstacles(int *const *arr, t_solver_spec spec);
 
 int							get_size(t_solver_spec solver_spec);
 
@@ -204,15 +203,19 @@ void						show_spec(t_specification specification);
 
 char						*get_stdin_string(void);
 
-void		print_map(int x, int y, const char *const *map_string);
+void						print_map(int x, int y,
+								const char *const *map_string);
 
-void		preset_obstacles(int x, int y, const char *const *map_string,
-							 int **obstacle_matrix);
+void						preset_obstacles(int x, int y,
+								const char *const *map_string,
+								int **obstacle_matrix);
 
-void		set_all_obstacle_count(int x, int y, int **obstacle_matrix);
+void						set_all_obstacle_count(int x, int y,
+								int **obstacle_matrix);
 
-t_solution	get_best_solution(int x, int y, int **arr);
+t_solution					get_best_solution(int x, int y, int **arr);
 
-void		show_solution(int x, int y, const char *const *map_string,
-						  t_solution solution);
+void						show_solution(int x, int y,
+								const char *const *map_string,
+								t_solution solution);
 #endif

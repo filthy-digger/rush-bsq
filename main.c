@@ -11,26 +11,6 @@
 /* ************************************************************************** */
 #include "lib.h"
 
-const char *g_str =
-	"20.ox\n.o..o...o.o..o......\n....o...............\n...o...o.......o....\n............o.......\n...o...........oo...\n....o...o.........o.\no........o...o..o...\n....oo..........oo..\noo.oo..o............\no.o......o.........o\n...o..o.............\n....................\n..o................o\n.........oo......o.o\n..o.o.o.....o.....o.\n......o.oo.o........\n..........o..o......\n..............o.....\no...o......o..o....o\n........o...........\n";
-
-/*
-t_map	make_specification(char *map_string)
-{
-	t_specification	specification;
-	t_map			map;
-	t_char_vector	first_line;
-
-	first_line.start = map_string;
-	first_line.end = strchr(first_line.start,'\n');
-	if (first_line.end == NULL)
-		specification.valid = false;
-	else
-}
-*/
-
-//char **get_map(const char *map_string)
-
 int	main(int argc, char **argv)
 {
 	int i;
@@ -65,6 +45,7 @@ int	main(int argc, char **argv)
 				ft_putstr("map error\n");
 			else
 				show_spec(specification);
+			ft_putstr("\n\n");
 			free(map_string);
 		}
 	}

@@ -15,8 +15,8 @@
 // copy from address src to address dst without managing overlap
 void	*ft_memcpy(void *dst0, const void *src0, size_t size)
 {
-	char *dst;
-	const char *src;
+	char		*dst;
+	const char	*src;
 
 	dst = (char *)dst0;
 	src = (const char *)src0;

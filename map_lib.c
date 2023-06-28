@@ -12,7 +12,6 @@
 
 #include "lib.h"
 
-
 void	get_map_obstacle_count(int x, int y, const char **map_string)
 {
 	int	**arr;
@@ -152,26 +151,22 @@ void	print_map(int x, int y, const char *const *map_string)
 	ft_putchar('\n');
 }
 
-int	get_obstacles(int *const *arr, t_solver_spec solver_spec)
+int	get_obstacles(int *const *arr, t_solver_spec spec)
 {
-	if (solver_spec.a.x >= 0 && solver_spec.a.y >= 0)
+	if (spec.a.x >= 0 && spec.a.y >= 0)
 	{
-		return (arr[solver_spec.d.y][solver_spec.d.x]
-			- arr[solver_spec.c.y][solver_spec.c.x]
-			- arr[solver_spec.b.y][solver_spec.b.x]
-			+ arr[solver_spec.a.y][solver_spec.a.x]);
+		return (arr[spec.d.y][spec.d.x] - arr[spec.c.y][spec.c.x]
+			- arr[spec.b.y][spec.b.x] + arr[spec.a.y][spec.a.x]);
 	}
-	else if (solver_spec.b.x >= 0 && solver_spec.b.y >= 0)
+	else if (spec.b.x >= 0 && spec.b.y >= 0)
 	{
-		return (arr[solver_spec.d.y][solver_spec.d.x]
-			- arr[solver_spec.b.y][solver_spec.b.x]);
+		return (arr[spec.d.y][spec.d.x] - arr[spec.b.y][spec.b.x]);
 	}
-	else if (solver_spec.c.x >= 0 && solver_spec.c.y >= 0)
+	else if (spec.c.x >= 0 && spec.c.y >= 0)
 	{
-		return (arr[solver_spec.d.y][solver_spec.d.x]
-			- arr[solver_spec.c.y][solver_spec.c.x]);
+		return (arr[spec.d.y][spec.d.x] - arr[spec.c.y][spec.c.x]);
 	}
-	return (arr[solver_spec.d.y][solver_spec.d.x]);
+	return (arr[spec.d.y][spec.d.x]);
 }
 
 int	get_size(t_solver_spec solver_spec)

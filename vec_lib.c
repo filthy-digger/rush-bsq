@@ -29,14 +29,3 @@ unsigned long	ft_power(unsigned int b, unsigned int e)
 	else
 		return (b * (ft_power(b, e - 1)));
 }
-
-// size_t	get_number_of_lines(t_char_vector str)
-//{
-//	size_t res;
-//	res = 0;
-//	int i;
-//	str.current = str.end - 1;
-//	while(str.start <= str.current)
-//		res += ft_power(10,i);
-//
-//}
