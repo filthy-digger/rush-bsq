@@ -40,6 +40,8 @@ int	main(int argc, char **argv)
 				if (fd != -1)
 					map_solve(ft_get_file(fd, file_size));
 			}
+			if (argc > 2)
+				ft_putchar('\n');
 			i++;
 		}
 	}
