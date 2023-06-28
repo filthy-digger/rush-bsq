@@ -51,7 +51,7 @@ bool	alloc_arr(t_map *map, int i, int ***arr)
 	}
 	if (i != map->spec.n && (*arr)[i--] == NULL)
 	{
-		while (0 < i)
+		while (0 <= i)
 		{
 			free((*arr)[i]);
 			i--;
