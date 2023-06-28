@@ -41,18 +41,3 @@ void	ft_putvec(t_char_vector vec)
 	ft_putstrn(vec.start, char_vec_length(vec));
 }
 
-void	ft_putmap(t_map map)
-{
-	size_t i;
-
-	i = 0;
-	map.current = map.start;
-	map.current.start = map.current.end + 1;
-	map.current.end = map.current.start + map.spec.line_length;
-	while (i < map.spec.number_of_lines)
-	{
-		map.current.start = map.current.end + 1;
-		map.current.end = map.current.start + map.spec.line_length;
-		ft_putvec(map.current);
-	}
-}

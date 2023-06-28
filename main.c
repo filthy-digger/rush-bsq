@@ -14,41 +14,50 @@
 t_map	make_map(const char *map_string, bool isfile)
 {
 	t_map	map;
-	size_t	i;
+	int	i;
+	int	j;
+	int line_length;
 
-	(void)isfile;
+	char *line_end;
 	map.spec = make_spec(map_string);
 	map.valid = false;
 	if (map.spec.valid && (ft_strlen(map.spec.first_line.end) > 1))
 	{
-		map.start.start = map.spec.first_line.end + 1;
-		map.start.end = ft_strchr(map.start.start, '\n');
-		if (map.start.end != NULL && (char_vec_length(map.start) != 0))
+		map.lines = malloc(map.spec.number_of_lines * sizeof(char *));
+		if (map.lines == NULL)
 		{
-			map.spec.line_length = char_vec_length(map.start);
-			map.current = map.start;
-			i = 1;
-			while (i < map.spec.number_of_lines)
-			{
-				if (ft_strlen(map.current.end) <= 1)
-					return map;
-				map.current.start = map.current.end + 1;
-				map.current.end = ft_strchr(map.current.start, '\n');
-				if (map.current.end != NULL &&
-				char_vec_length(map.current) != map.spec.line_length)
-					return (map);
-				map.current.current = map.current.start;
-				while (map.current.current < map.current.end)
-				{
-					if (*map.current.current != map.spec.obstacle && *map.current.current != map.spec.empty)
-						return (map);
-					map.current.current++;
-				}
-				i++;
-			}
-			map.end = map.current;
-			map.valid = true;
+			ft_puterr("malloc error");
+			exit(0);
 		}
+		line_end =  (char *) map.spec.first_line.end;
+		i = 0;
+		while (i < map.spec.number_of_lines)
+		{
+			if (ft_strlen(line_end) <= 1)
+				return map;
+			map.lines[i] =  (char *) (line_end + 1);
+			line_end = (char *) ft_strchr(map.lines[i], '\n');
+			if (line_end == NULL)
+				return map;
+			line_length = (int) (line_end - map.lines[i]);
+			if (i == 0)
+				map.spec.line_length = line_length;
+			if (line_length != map.spec.line_length)
+				return map;
+			j = 0;
+			while (j < map.spec.line_length)
+			{
+				if (map.lines[i][j] != map.spec.obstacle && map.lines[i][j] != map.spec.empty)
+					return (map);
+				j++;
+			}
+			i++;
+		}
+		if (isfile && strlen(line_end) != 1)
+		{
+			return map;
+		}
+		map.valid = true;
 	}
 	return (map);
 }
@@ -83,9 +92,10 @@ int	main(int argc, char **argv)
 			i++;
 			if (map.valid)
 			{
-				ft_putmap(map);
+//				print_map((int)map.spec.line_length, (int) map.spec.number_of_lines, map.lines);
+				get_map_obstacle_count(map.spec.line_length, map.spec.number_of_lines, map.lines);
 //				show_spec(map.spec);
-				ft_putstr("\n");
+//				ft_putchar('\n');
 			}
 			else
 				ft_putstr("map error\n");

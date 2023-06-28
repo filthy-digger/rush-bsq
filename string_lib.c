@@ -61,11 +61,13 @@ size_t	strlen_until_char(const char *str, char c)
 	size_t	size;
 
 	size = 0;
-	while (*str != c)
+	while (*str && *str != c)
 	{
 		str++;
 		++size;
 	}
+	if (*str == '\0')
+		return (-1);
 	return (size);
 }
 

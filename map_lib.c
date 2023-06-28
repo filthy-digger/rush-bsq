@@ -24,13 +24,13 @@ void	get_map_obstacle_count(int x, int y, const char **map_string)
 		arr[i] = malloc(x * sizeof(int));
 		i++;
 	}
-	print_map(x, y, map_string);
+//	print_map(x, y, map_string);
 	preset_obstacles(x, y, map_string, arr);
 	set_all_obstacle_count(x, y, arr);
 	show_solution(x, y, map_string, get_best_solution(x, y, arr));
 }
 
-void	show_solution(int x, int y, const char *const *map_string,
+void	show_solution(int x, int y, const char **map_string,
 		t_solution solution)
 {
 	int	j;
@@ -45,7 +45,7 @@ void	show_solution(int x, int y, const char *const *map_string,
 			if (solution.size && (j <= (solution.d).x) && ((solution.d).x
 					- solution.size < j) && (i <= (solution.d).y)
 				&& ((solution.d).y - solution.size < i))
-				printf("x");
+				ft_putchar('x');
 			else
 				ft_putchar(map_string[i][j]);
 			j++;
@@ -53,7 +53,6 @@ void	show_solution(int x, int y, const char *const *map_string,
 		i++;
 		ft_putchar('\n');
 	}
-	ft_putchar('\n');
 }
 
 t_solution	get_best_solution(int x, int y, int **arr)
@@ -109,7 +108,7 @@ void	set_all_obstacle_count(int x, int y, int **obstacle_matrix)
 	}
 }
 
-void	preset_obstacles(int x, int y, const char *const *map_string,
+void	preset_obstacles(int x, int y, const char **map_string,
 		int **obstacle_matrix)
 {
 	int	j;
@@ -131,7 +130,7 @@ void	preset_obstacles(int x, int y, const char *const *map_string,
 	}
 }
 
-void	print_map(int x, int y, const char *const *map_string)
+void	print_map(int x, int y, const char **map_string)
 {
 	int	j;
 	int	i;
@@ -148,10 +147,9 @@ void	print_map(int x, int y, const char *const *map_string)
 		i++;
 		ft_putchar('\n');
 	}
-	ft_putchar('\n');
 }
 
-int	get_obstacles(int *const *arr, t_solver_spec spec)
+int	get_obstacles(int **arr, t_solver_spec spec)
 {
 	if (spec.a.x >= 0 && spec.a.y >= 0)
 	{
@@ -183,7 +181,7 @@ int	get_size(t_solver_spec solver_spec)
 		return (solver_spec.d.y + 1);
 }
 
-int	get_best_size(int *const *arr, t_point d)
+int	get_best_size(int **arr, t_point d)
 {
 	t_solver_spec	solver_spec;
 	int				best_size;

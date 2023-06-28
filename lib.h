@@ -106,17 +106,15 @@ typedef struct s_specification
 	char					obstacle;
 	char					full;
 	t_char_vector			first_line;
-	size_t					number_of_lines;
-	size_t					line_length;
+	int						number_of_lines;
+	int						line_length;
 }							t_map_spec;
 
 typedef struct s_map
 {
 	bool					valid;
 	t_map_spec				spec;
-	t_char_vector			start;
-	t_char_vector			current;
-	t_char_vector			end;
+	const char 				**lines;
 }							t_map;
 
 typedef struct s_linked_list
@@ -189,9 +187,9 @@ void						get_map_obstacle_count(int x, int y,
 
 void						ft_putsize(size_t size);
 
-int							get_best_size(int *const *arr, t_point d);
+int							get_best_size(int **arr, t_point d);
 
-int							get_obstacles(int *const *arr, t_solver_spec spec);
+int							get_obstacles(int **arr, t_solver_spec spec);
 
 int							get_size(t_solver_spec solver_spec);
 
@@ -207,10 +205,10 @@ void						show_spec(t_map_spec specification);
 char						*get_stdin_string(void);
 
 void						print_map(int x, int y,
-								const char *const *map_string);
+								const char **map_string);
 
 void						preset_obstacles(int x, int y,
-								const char *const *map_string,
+								const char **map_string,
 								int **obstacle_matrix);
 
 void						set_all_obstacle_count(int x, int y,
@@ -219,12 +217,10 @@ void						set_all_obstacle_count(int x, int y,
 t_solution					get_best_solution(int x, int y, int **arr);
 
 void						show_solution(int x, int y,
-								const char *const *map_string,
+								const char **map_string,
 								t_solution solution);
 
 const char * ft_strchr(const char *str, char c);
 
-
-void	ft_putmap(t_map map);
 
 #endif
