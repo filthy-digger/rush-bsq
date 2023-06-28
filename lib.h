@@ -95,8 +95,8 @@ typedef struct s_int_vector
 typedef struct s_char_vector
 {
 	const char				*start;
-	char					*current;
-	char					*end;
+	const char				*current;
+	const char				*end;
 }							t_char_vector;
 
 typedef struct s_specification
@@ -105,15 +105,18 @@ typedef struct s_specification
 	char					empty;
 	char					obstacle;
 	char					full;
+	t_char_vector			first_line;
 	size_t					number_of_lines;
-}							t_specification;
+	size_t					line_length;
+}							t_map_spec;
 
 typedef struct s_map
 {
-	t_specification			specification;
-	t_char_vector			*start;
-	t_char_vector			*current;
-	t_char_vector			*end;
+	bool					valid;
+	t_map_spec				spec;
+	t_char_vector			start;
+	t_char_vector			current;
+	t_char_vector			end;
 }							t_map;
 
 typedef struct s_linked_list
@@ -197,9 +200,9 @@ char						ft_stoc(size_t size);
 
 unsigned long				ft_power(unsigned int b, unsigned int e);
 
-t_specification				make_specification(const char *map_string);
+t_map_spec					make_spec(const char *map_string);
 
-void						show_spec(t_specification specification);
+void						show_spec(t_map_spec specification);
 
 char						*get_stdin_string(void);
 
@@ -218,4 +221,10 @@ t_solution					get_best_solution(int x, int y, int **arr);
 void						show_solution(int x, int y,
 								const char *const *map_string,
 								t_solution solution);
+
+const char * ft_strchr(const char *str, char c);
+
+
+void	ft_putmap(t_map map);
+
 #endif
