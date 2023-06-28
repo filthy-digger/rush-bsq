@@ -114,6 +114,8 @@ int	main(int argc, char **argv)
 								   map.lines);
 			ft_putchar('\n');
 		}
+		else if (map.spec.valid)
+			show_spec(map.spec);
 		else
 			ft_putstr("map error\n");
 		//		ft_putsize(ft_strlen(map_string));
