@@ -55,4 +55,6 @@ norm:
 norm_check:
 	norminette $(FILES)
 
+renorm:	norm norm_check
+
 .PHONY: all

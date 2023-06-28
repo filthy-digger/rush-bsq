@@ -22,6 +22,63 @@
 # include <string.h>
 # include <unistd.h>
 
+/*
+  |----------------|---|......
+  |....o...........|...|......
+  |........A...o...|.B.|......
+  |----------------a---b......
+  |....o...........|...|......
+  |........C......o|.D.|......
+  |................|...|......
+  |------o---------c---do.....
+   ..o.......o................
+
+  |----------------|---|......
+  |....o...A.......|.B.|......
+  |------------o---a---b......
+  |................|...|......
+  |....o...........|...|......
+  |........C......o|.D.|......
+  |................|...|......
+  |------o---------c---do.....
+   ..o.......o................
+			a.x = c.x | b.x = d.x
+	|-------------|----|---
+	|             |    |  |
+	|             |    |  |
+	|_____________a____b  |  a.y = b.y
+	|             |    |  |
+	|             |    |  |
+	|_____________c____d  |  d.y = c.y
+	|_____________________|
+				d.x = b.x
+	-----------------------
+	|             |       |
+	|             |       |
+	|_____________b       |  b.y
+	|             |       |
+	|             |       |
+	|_____________d       |  d.y
+	|_____________________|
+					c.x  d.x
+	-----------------------
+	|             |    |  |
+	|             |    |  |
+	|_____________c____d  |  d.y = c.y
+	|                     |
+	|                     |
+	|                     |
+	|_____________________|
+		d.x
+	-----------------------
+	|                     |
+	|----|                |
+	|    |                |
+	|----d                |  d.y
+	|                     |
+	|                     |
+	|_____________________|
+*/
 typedef struct s_point
 {
 	int						x;
@@ -37,7 +94,7 @@ typedef struct s_int_vector
 
 typedef struct s_char_vector
 {
-	char					*start;
+	const char				*start;
 	char					*current;
 	char					*end;
 }							t_char_vector;
@@ -64,6 +121,20 @@ typedef struct s_linked_list
 	void					*data;
 	struct s_linked_list	*next;
 }							t_linked_list;
+
+typedef struct s_solution
+{
+	int						size;
+	t_point					d;
+}							t_solution;
+
+typedef struct s_solver_spec
+{
+	t_point					a;
+	t_point					b;
+	t_point					c;
+	t_point					d;
+}							t_solver_spec;
 
 size_t						ft_strlen(const char *str);
 
@@ -117,11 +188,10 @@ void						ft_putsize(size_t size);
 
 int							get_best_size(int *const *arr, t_point d);
 
-int							get_obstacles(int *const *arr, t_point a, t_point b,
-								t_point c, t_point d);
+int	get_obstacles(int *const *arr,
+					t_solver_spec solver_spec);
 
-int							get_size(t_point a, t_point b, t_point c,
-								t_point d);
+int							get_size(t_solver_spec solver_spec);
 
 // Switch int to char in ASCII (+ 48)
 char						ft_stoc(size_t size);
@@ -130,7 +200,19 @@ unsigned long				ft_power(unsigned int b, unsigned int e);
 
 t_specification				make_specification(const char *map_string);
 
-void	show_spec(t_specification specification);
+void						show_spec(t_specification specification);
 
 char						*get_stdin_string(void);
+
+void		print_map(int x, int y, const char *const *map_string);
+
+void		preset_obstacles(int x, int y, const char *const *map_string,
+							 int **obstacle_matrix);
+
+void		set_all_obstacle_count(int x, int y, int **obstacle_matrix);
+
+t_solution	get_best_solution(int x, int y, int **arr);
+
+void		show_solution(int x, int y, const char *const *map_string,
+						  t_solution solution);
 #endif
