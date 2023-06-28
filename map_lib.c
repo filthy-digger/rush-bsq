@@ -37,8 +37,8 @@ void	map_line_loop(t_map *m, char *line_end, int i, int j)
 			j++;
 		}
 		i++;
-		m->valid = ft_strlen(line_end) == 1;
 	}
+	m->valid = ft_strlen(line_end) == 1;
 }
 
 t_map	ft_make_map(char *map_string)
