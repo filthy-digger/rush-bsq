@@ -16,7 +16,6 @@ bool	ft_check_open(int fd)
 {
 	if (fd == -1)
 	{
-		ft_puterr("valid path");
 		return (false);
 	}
 	return (true);
@@ -29,7 +28,6 @@ bool	ft_check_read(int fd)
 	buf = malloc(sizeof(char));
 	if (read(fd, buf, 0) == -1)
 	{
-		ft_puterr("cannot read");
 		free(buf);
 		return (false);
 	}

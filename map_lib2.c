@@ -46,6 +46,10 @@ void	ft_show_solution(t_solution solution, t_map map)
 	int	j;
 	int	i;
 
+	if (solution.size == 0)
+	{
+		ft_putstr("map error");
+	}
 	i = 0;
 	while (i < map.spec.n)
 	{
