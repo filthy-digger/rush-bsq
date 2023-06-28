@@ -17,7 +17,7 @@ int	get_fd(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (!ft_check_open(fd) || !ft_check_read(fd))
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 	return (fd);
 }
 

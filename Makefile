@@ -12,7 +12,7 @@
 
 NAME = bsq
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror # -fsanitize=address
 SRCS = main.c\
  file_lib.c\
  clio_lib.c\

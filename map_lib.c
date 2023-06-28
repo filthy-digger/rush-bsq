@@ -65,17 +65,16 @@ void	map_solve(char *map_string)
 
 	if (map_string == NULL)
 	{
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 		return ;
 	}
 	(map) = ft_make_map(map_string);
 	if ((map).valid)
 	{
 		ft_get_map_obstacle_count((map));
-		ft_putchar('\n');
 	}
 	else
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 	if ((map).spec.valid)
 		free((map).str);
 	free(map_string);

@@ -38,7 +38,7 @@ bool	alloc_arr(t_map *map, int i, int ***arr)
 	*arr = malloc(map->spec.n * sizeof(int *));
 	if (*arr == NULL)
 	{
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 		return (false);
 	}
 	i = 0;
@@ -69,7 +69,7 @@ void	ft_show_solution(t_solution solution, t_map map)
 
 	if (solution.size == 0)
 	{
-		ft_putstr("map error");
+		ft_puterr("map error\n");
 		return ;
 	}
 	i = 0;

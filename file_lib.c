@@ -27,7 +27,7 @@ size_t	ft_get_fsize(int fd)
 	{
 		if (last_read_status == -1)
 		{
-			ft_putstr("map error\n");
+			ft_puterr("map error\n");
 			close(fd);
 			free(buf);
 			return (0);
@@ -76,7 +76,7 @@ char	*ft_get_stdin_string(void)
 	map_string = malloc(file_size);
 	if (map_string == NULL)
 	{
-		ft_putstr("map error\n");
+		ft_puterr("map error\n");
 		return (NULL);
 	}
 	last_read = read(0, map_string, 1);
@@ -92,14 +92,14 @@ char	*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
 	{
 		if (last_read == -1)
 		{
-			ft_putstr("map error\n");
+			ft_puterr("map error\n");
 			free(*map_string);
 			return (NULL);
 		}
 		new_map_string = malloc(file_size + 1);
 		if (new_map_string == NULL)
 		{
-			ft_putstr("map error\n");
+			ft_puterr("map error\n");
 			free(*map_string);
 			return (NULL);
 		}
