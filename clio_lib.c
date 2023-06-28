@@ -40,4 +40,3 @@ void	ft_putvec(t_char_vector vec)
 {
 	ft_putstrn(vec.start, char_vec_length(vec));
 }
-

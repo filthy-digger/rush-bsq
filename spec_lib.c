@@ -20,7 +20,8 @@ t_map_spec	make_spec(const char *map_string)
 	spec.valid = false;
 	spec.first_line.start = map_string;
 	spec.first_line.end = ft_strchr(spec.first_line.start, '\n');
-	if ((spec.first_line.end != NULL) && (spec.first_line.end - spec.first_line.start >= 4))
+	if ((spec.first_line.end != NULL) && (spec.first_line.end
+			- spec.first_line.start >= 4))
 	{
 		spec.full = spec.first_line.end[-1];
 		spec.obstacle = spec.first_line.end[-2];

@@ -85,11 +85,11 @@ size_t	strnlen_until_char(const char *str, char c, size_t n)
 	return (size);
 }
 
-const char * ft_strchr(const char *str, char c)
+const char	*ft_strchr(const char *str, char c)
 {
 	while (*str != '\0' && *str != c)
 		str++;
 	if (*str == '\0')
 		return (NULL);
-	return str;
+	return (str);
 }

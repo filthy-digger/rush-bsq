@@ -24,7 +24,7 @@ void	get_map_obstacle_count(int x, int y, const char **map_string)
 		arr[i] = malloc(x * sizeof(int));
 		i++;
 	}
-//	print_map(x, y, map_string);
+	//	print_map(x, y, map_string);
 	preset_obstacles(x, y, map_string, arr);
 	set_all_obstacle_count(x, y, arr);
 	show_solution(x, y, map_string, get_best_solution(x, y, arr));

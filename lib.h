@@ -114,7 +114,7 @@ typedef struct s_map
 {
 	bool					valid;
 	t_map_spec				spec;
-	const char 				**lines;
+	const char				**lines;
 }							t_map;
 
 typedef struct s_linked_list
@@ -204,23 +204,19 @@ void						show_spec(t_map_spec specification);
 
 char						*get_stdin_string(void);
 
-void						print_map(int x, int y,
-								const char **map_string);
+void						print_map(int x, int y, const char **map_string);
 
 void						preset_obstacles(int x, int y,
-								const char **map_string,
-								int **obstacle_matrix);
+								const char **map_string, int **obstacle_matrix);
 
 void						set_all_obstacle_count(int x, int y,
 								int **obstacle_matrix);
 
 t_solution					get_best_solution(int x, int y, int **arr);
 
-void						show_solution(int x, int y,
-								const char **map_string,
+void						show_solution(int x, int y, const char **map_string,
 								t_solution solution);
 
-const char * ft_strchr(const char *str, char c);
-
+const char					*ft_strchr(const char *str, char c);
 
 #endif
