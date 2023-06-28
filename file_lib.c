@@ -12,6 +12,9 @@
 
 #include "lib.h"
 
+char	*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
+			char **map_string);
+
 bool	ft_check_open(int fd)
 {
 	if (fd == -1)
@@ -91,28 +94,46 @@ char	*ft_get_file(int fd, size_t file_size)
 char	*ft_get_stdin_string(void)
 {
 	size_t	file_size;
-	ssize_t	last_read_status;
+	ssize_t	last_read;
 	char	*map_string;
-	char	*new_map_string;
 
 	file_size = 1;
 	map_string = malloc(file_size);
-	last_read_status = read(0, map_string, 1);
-	while (last_read_status != 0)
+	if (map_string == NULL)
 	{
-		if (last_read_status == -1)
+		ft_putstr("map error\n");
+		return (NULL);
+	}
+	last_read = read(0, map_string, 1);
+	return (ft_stdin_str_aux(file_size, last_read, &map_string));
+}
+
+char	*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
+		char **map_string)
+{
+	char	*new_map_string;
+
+	while (last_read != 0)
+	{
+		if (last_read == -1)
 		{
 			ft_putstr("map error\n");
-			free(map_string);
+			free(*map_string);
 			return (NULL);
 		}
 		new_map_string = malloc(file_size + 1);
-		ft_memcpy(new_map_string, map_string, file_size);
-		last_read_status = read(0, new_map_string + file_size, 1);
-		free(map_string);
-		map_string = new_map_string;
+		if (new_map_string == NULL)
+		{
+			ft_putstr("map error\n");
+			free(*map_string);
+			return (NULL);
+		}
+		ft_memcpy(new_map_string, *map_string, file_size);
+		last_read = read(0, new_map_string + file_size, 1);
+		free(*map_string);
+		*map_string = new_map_string;
 		file_size++;
 	}
-	map_string[file_size - 1] = '\0';
-	return (map_string);
+	*map_string[file_size - 1] = '\0';
+	return (*map_string);
 }
