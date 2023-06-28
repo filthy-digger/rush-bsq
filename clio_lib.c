@@ -36,12 +36,12 @@ void	ft_print_map(t_map map)
 	int	i;
 
 	i = 0;
-	while (i < map.spec.number_of_lines)
+	while (i < map.spec.n)
 	{
 		j = 0;
-		while (j < map.spec.line_length)
+		while (j < map.spec.len)
 		{
-			ft_putchar(map.lines[i][j]);
+			ft_putchar(map.str[i][j]);
 			j++;
 		}
 		i++;

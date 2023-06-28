@@ -77,10 +77,10 @@ t_solution	ft_get_best_solution(int **arr, t_map map)
 	solution.d.x = 0;
 	solution.d.y = 0;
 	(best_solution.size) = 0;
-	while (solution.d.y < map.spec.number_of_lines)
+	while (solution.d.y < map.spec.n)
 	{
 		solution.d.x = 0;
-		while (solution.d.x < map.spec.line_length)
+		while (solution.d.x < map.spec.len)
 		{
 			solution.size = ft_get_best_size(arr, solution.d);
 			if (solution.size > (best_solution.size))

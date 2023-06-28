@@ -88,18 +88,18 @@ typedef struct s_point
 typedef struct s_specification
 {
 	bool		valid;
-	char		empty;
-	char		obstacle;
+	char		emp;
+	char		obs;
 	char		full;
-	int			number_of_lines;
-	int			line_length;
+	int			n;
+	int			len;
 }				t_map_spec;
 
 typedef struct s_map
 {
 	bool		valid;
 	t_map_spec	spec;
-	char		**lines;
+	char		**str;
 }				t_map;
 
 typedef struct s_solution

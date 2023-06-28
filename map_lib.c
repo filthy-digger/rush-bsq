@@ -12,52 +12,61 @@
 
 #include "lib.h"
 
+void	malloc_map(t_map *map);
+
+void	map_line_loop(t_map *m, char *line_end, int i, int j)
+{
+	int	line_length;
+
+	while (i < m->spec.n)
+	{
+		if (ft_strlen(line_end) <= 1)
+			return ;
+		m->str[i] = (line_end + 1);
+		line_end = ft_strchr(m->str[i], '\n');
+		if (line_end == NULL)
+			return ;
+		line_length = (int)(line_end - m->str[i]);
+		if (i == 0)
+			m->spec.len = line_length;
+		if (line_length != m->spec.len)
+			return ;
+		j = 0;
+		while (j < m->spec.len)
+		{
+			if (m->str[i][j] != m->spec.obs && m->str[i][j] != m->spec.emp)
+				return ;
+			j++;
+		}
+		i++;
+		m->valid = ft_strlen(line_end) == 1;
+	}
+}
+
 t_map	ft_make_map(char *map_string)
 {
 	t_map	map;
-	int		line_length;
 	char	*line_end;
-	int		i;
-	int		j;
 
 	map.spec = ft_make_spec(map_string);
 	map.valid = false;
 	if (map.spec.valid)
 	{
-		map.lines = malloc(map.spec.number_of_lines * sizeof(char *));
-		if (map.lines == NULL)
-		{
-			ft_puterr("malloc error");
-			exit(0);
-		}
 		line_end = ft_strchr(map_string, '\n');
-		i = 0;
-		while (i < map.spec.number_of_lines)
-		{
-			if (ft_strlen(line_end) <= 1)
-				return (map);
-			map.lines[i] = (line_end + 1);
-			line_end = ft_strchr(map.lines[i], '\n');
-			if (line_end == NULL)
-				return (map);
-			line_length = (int)(line_end - map.lines[i]);
-			if (i == 0)
-				map.spec.line_length = line_length;
-			if (line_length != map.spec.line_length)
-				return (map);
-			j = 0;
-			while (j < map.spec.line_length)
-			{
-				if (map.lines[i][j] != map.spec.obstacle
-					&& map.lines[i][j] != map.spec.empty)
-					return (map);
-				j++;
-			}
-			i++;
-			map.valid = ft_strlen(line_end) == 1;
-		}
+		malloc_map(&map);
+		map_line_loop(&map, line_end, 0, 0);
 	}
 	return (map);
+}
+
+void	malloc_map(t_map *map)
+{
+	(*map).str = malloc((*map).spec.n * sizeof(char *));
+	if ((*map).str == NULL)
+	{
+		ft_puterr("malloc error");
+		exit(0);
+	}
 }
 
 void	map_solve(char *map_string)
@@ -73,6 +82,6 @@ void	map_solve(char *map_string)
 	else
 		ft_putstr("map error\n");
 	if ((map).spec.valid)
-		free((map).lines);
+		free((map).str);
 	free(map_string);
 }

@@ -24,16 +24,16 @@ t_map_spec	ft_make_spec(char *map_string)
 	if ((line_end != NULL) && (line_end - map_string >= 4))
 	{
 		spec.full = line_end[-1];
-		spec.obstacle = line_end[-2];
-		spec.empty = line_end[-3];
-		if (spec.full != spec.obstacle && spec.obstacle != spec.empty
-			&& spec.full != spec.empty)
+		spec.obs = line_end[-2];
+		spec.emp = line_end[-3];
+		if (spec.full != spec.obs && spec.obs != spec.emp
+			&& spec.full != spec.emp)
 		{
 			current = line_end - 4;
 			e = 0;
-			spec.number_of_lines = 0;
+			spec.n = 0;
 			while (map_string <= current)
-				spec.number_of_lines += ft_ctoi(*current--) * ft_power(10, e++);
+				spec.n += ft_ctoi(*current--) * ft_power(10, e++);
 			spec.valid = true;
 		}
 	}
@@ -42,12 +42,12 @@ t_map_spec	ft_make_spec(char *map_string)
 
 void	ft_show_spec(t_map_spec specification)
 {
-	ft_putstr("empty = ");
-	ft_putchar(specification.empty);
+	ft_putstr("emp = ");
+	ft_putchar(specification.emp);
 	ft_putstr("\nobstacle = ");
-	ft_putchar(specification.obstacle);
+	ft_putchar(specification.obs);
 	ft_putstr("\nfull = ");
 	ft_putchar(specification.full);
-	ft_putstr("\nnumber of lines = ");
-	ft_putsize(specification.number_of_lines);
+	ft_putstr("\nnumber of str = ");
+	ft_putsize(specification.n);
 }
