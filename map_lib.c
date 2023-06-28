@@ -142,7 +142,7 @@ void	preset_obstacles(int x, int y, const char **map_string,
 	}
 }
 
-void print_map(t_map map)
+void	print_map(t_map map)
 {
 	int	j;
 	int	i;

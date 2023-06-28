@@ -94,26 +94,29 @@ int	main(int argc, char **argv)
 			if (map.valid)
 			{
 				get_map_obstacle_count(map.spec.line_length,
-									   map.spec.number_of_lines,
-									   map.lines);
+										map.spec.number_of_lines,
+										map.lines);
 				ft_putchar('\n');
-			} else
+			}
+			else
 				ft_putstr("map error\n");
 			free(map_string);
 			i++;
 		}
-	} else
+	}
+	else
 	{
 		map_string = get_stdin_string();
-			map = make_map(map_string, true);
-			if (map.valid)
-			{
-				get_map_obstacle_count(map.spec.line_length,
-									   map.spec.number_of_lines,
-									   map.lines);
-				ft_putchar('\n');
-			} else
-				ft_putstr("map error\n");
+		map = make_map(map_string, true);
+		if (map.valid)
+		{
+			get_map_obstacle_count(map.spec.line_length,
+									map.spec.number_of_lines,
+									map.lines);
+			ft_putchar('\n');
+		}
+		else
+			ft_putstr("map error\n");
 		free(map_string);
 	}
 	return (0);
