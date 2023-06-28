@@ -18,6 +18,11 @@ void	get_map_obstacle_count(int x, int y, const char **map_string)
 	int	i;
 
 	arr = malloc(y * sizeof(int *));
+	if (arr == NULL)
+	{
+		ft_putstr("malloc error");
+		exit(0);
+	}
 	i = 0;
 	while (i < y)
 	{
@@ -28,6 +33,13 @@ void	get_map_obstacle_count(int x, int y, const char **map_string)
 	preset_obstacles(x, y, map_string, arr);
 	set_all_obstacle_count(x, y, arr);
 	show_solution(x, y, map_string, get_best_solution(x, y, arr));
+	i = 0;
+	while (i < y)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 void	show_solution(int x, int y, const char **map_string,
@@ -130,18 +142,18 @@ void	preset_obstacles(int x, int y, const char **map_string,
 	}
 }
 
-void	print_map(int x, int y, const char **map_string)
+void print_map(t_map map)
 {
 	int	j;
 	int	i;
 
 	i = 0;
-	while (i < y)
+	while (i < map.spec.number_of_lines)
 	{
 		j = 0;
-		while (j < x)
+		while (j < map.spec.line_length)
 		{
-			ft_putchar(map_string[i][j]);
+			ft_putchar(map.lines[i][j]);
 			j++;
 		}
 		i++;

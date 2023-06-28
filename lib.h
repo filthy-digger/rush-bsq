@@ -204,7 +204,7 @@ void						show_spec(t_map_spec specification);
 
 char						*get_stdin_string(void);
 
-void						print_map(int x, int y, const char **map_string);
+void print_map(t_map map);
 
 void						preset_obstacles(int x, int y,
 								const char **map_string, int **obstacle_matrix);

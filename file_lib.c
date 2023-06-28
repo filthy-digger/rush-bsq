@@ -99,9 +99,9 @@ char	*get_stdin_string(void)
 	{
 		if (last_read_status == -1)
 		{
-			ft_putstr("map error\n");
+			ft_putstr("stdin read error\n");
 			free(map_string);
-			return (NULL);
+			exit(1);
 		}
 		new_map_string = malloc(file_size + 1);
 		ft_memcpy(new_map_string, map_string, file_size);

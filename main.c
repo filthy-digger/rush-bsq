@@ -69,10 +69,11 @@ int	main(int argc, char **argv)
 	int fd;
 	char *map_string;
 	size_t file_size;
+	t_map map;
 
-	i = 1;
 	if (argc != 1)
 	{
+		i = 1;
 		while (i < argc)
 		{
 			fd = open(argv[i], O_RDONLY);
@@ -89,36 +90,30 @@ int	main(int argc, char **argv)
 				return (1);
 			}
 			map_string = get_file_string(fd, file_size);
-			t_map map = make_map(map_string, true);
+			map = make_map(map_string, true);
 			if (map.valid)
 			{
 				get_map_obstacle_count(map.spec.line_length,
-										map.spec.number_of_lines,
-										map.lines);
+									   map.spec.number_of_lines,
+									   map.lines);
 				ft_putchar('\n');
-			}
-			else
+			} else
 				ft_putstr("map error\n");
 			free(map_string);
 			i++;
 		}
-	}
-	else
+	} else
 	{
 		map_string = get_stdin_string();
-		t_map map = make_map(map_string, true);
-		if (map.valid)
-		{
-			get_map_obstacle_count(map.spec.line_length,
-								   map.spec.number_of_lines,
-								   map.lines);
-			ft_putchar('\n');
-		}
-		else if (map.spec.valid)
-			show_spec(map.spec);
-		else
-			ft_putstr("map error\n");
-		//		ft_putsize(ft_strlen(map_string));
+			map = make_map(map_string, true);
+			if (map.valid)
+			{
+				get_map_obstacle_count(map.spec.line_length,
+									   map.spec.number_of_lines,
+									   map.lines);
+				ft_putchar('\n');
+			} else
+				ft_putstr("map error\n");
 		free(map_string);
 	}
 	return (0);
