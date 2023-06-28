@@ -177,4 +177,6 @@ t_map			ft_make_map(char *map_string);
 
 void			map_solve(char *map_string);
 
+char			*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
+					char **map_string);
 #endif

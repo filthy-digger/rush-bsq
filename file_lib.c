@@ -12,34 +12,6 @@
 
 #include "lib.h"
 
-char	*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
-			char **map_string);
-
-bool	ft_check_open(int fd)
-{
-	if (fd == -1)
-	{
-		return (false);
-	}
-	return (true);
-}
-
-bool	ft_check_read(int fd)
-{
-	char	*buf;
-
-	buf = malloc(sizeof(char));
-	if (buf == NULL)
-		return (false);
-	if (read(fd, buf, 0) == -1)
-	{
-		free(buf);
-		return (false);
-	}
-	free(buf);
-	return (true);
-}
-
 size_t	ft_get_fsize(int fd)
 {
 	char	*buf;
@@ -134,6 +106,6 @@ char	*ft_stdin_str_aux(size_t file_size, ssize_t last_read,
 		*map_string = new_map_string;
 		file_size++;
 	}
-	*map_string[file_size - 1] = '\0';
+	(*map_string)[file_size - 1] = '\0';
 	return (*map_string);
 }
