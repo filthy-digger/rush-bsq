@@ -25,7 +25,7 @@ size_t	ft_strlen(const char *str)
 }
 
 // count occurences of char "chr" in string "str"
-size_t	ft_count_char(char *str, char chr)
+size_t	ft_count_char(const char *str, char chr)
 {
 	size_t	counter;
 
@@ -71,7 +71,7 @@ size_t	strlen_until_char(const char *str, char c)
 
 size_t	strnlen_until_char(const char *str, char c, size_t n)
 {
-	size_t	size;
+	size_t size;
 
 	size = 0;
 	while (*str != c && n)

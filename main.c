@@ -11,45 +11,34 @@
 /* ************************************************************************** */
 #include "lib.h"
 
-// t_map	get_map(char *map_string, t_specification specification)
-//{
-//
-//}
+const char *g_str =
+	"20.ox\n.o..o...o.o..o......\n....o...............\n...o...o.......o....\n............o.......\n...o...........oo...\n....o...o.........o.\no........o...o..o...\n....oo..........oo..\noo.oo..o............\no.o......o.........o\n...o..o.............\n....................\n..o................o\n.........oo......o.o\n..o.o.o.....o.....o.\n......o.oo.o........\n..........o..o......\n..............o.....\no...o......o..o....o\n........o...........\n";
+
+/*
+t_map	make_specification(char *map_string)
+{
+	t_specification	specification;
+	t_map			map;
+	t_char_vector	first_line;
+
+	first_line.start = map_string;
+	first_line.end = strchr(first_line.start,'\n');
+	if (first_line.end == NULL)
+		specification.valid = false;
+	else
+}
+*/
+
+//char **get_map(const char *map_string)
 
 int	main(int argc, char **argv)
 {
-	int fd;
 	int i;
+	int fd;
 	char *map_string;
-	//	char *new_map_string;
+	t_specification specification;
 	size_t file_size;
-	//	ssize_t last_read_status;
-	//	t_specification specification;
 
-	const char *str[20]	= {
-			".o..o...o.o..o......",
-			"....o...............",
-			"...o...o.......o....",
-			"............o.......",
-			"...o...........oo...",
-			"....o...o.........o.",
-			"o........o...o..o...",
-			"....oo..........oo..",
-			"oo.oo..o............",
-			"o.o......o.........o",
-			"...o..o.............",
-			"....................",
-			"..o................o",
-			".........oo......o.o",
-			"..o.o.o.....o.....o.",
-			"......o.oo.o........",
-			"..........o..o......",
-			"..............o.....",
-			"o...o......o..o....o",
-			"........o..........."
-	};
-	get_map_obstacle_count(20, 20, &str[0]);
-	return 0;
 	i = 1;
 	if (argc != 1)
 	{
@@ -69,17 +58,21 @@ int	main(int argc, char **argv)
 				return (1);
 			}
 			map_string = get_file_string(fd, file_size);
-			size_t num_lines = ft_count_char(map_string, '\n');
-			ft_putsize(num_lines);
-			//				check if map is valid
-			free(map_string);
 			i++;
+			ft_putstr(map_string);
+			specification = make_specification(map_string);
+			if (!specification.valid)
+				ft_putstr("map error\n");
+			else
+				show_spec(specification);
+			free(map_string);
 		}
 	}
 	else
 	{
 		map_string = get_stdin_string();
 		ft_putstr(map_string);
+		free(map_string);
 	}
 	return (0);
 }

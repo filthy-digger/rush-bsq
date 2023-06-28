@@ -1,15 +1,50 @@
 #include "lib.h"
 
-t_specification	get_spec(char *map_string)
+t_specification	make_specification(const char *map_string)
 {
-	t_char_vector	first_line;
+	unsigned int	e;
 	t_specification	specification;
+	t_char_vector	first_line;
 
-	first_line.start = map_string;
-	first_line.end = strchr(map_string, '\n');
-	first_line.current = first_line.start;
+	first_line.start = (char *)map_string;
+	first_line.end = strchr(first_line.start, '\n');
+	if ((first_line.end == NULL) || (first_line.end - first_line.start < 4))
+	{
+		specification.valid = false;
+		return (specification);
+	}
 	specification.full = first_line.end[-1];
 	specification.obstacle = first_line.end[-2];
 	specification.empty = first_line.end[-3];
+	if (specification.full == specification.obstacle
+		|| specification.obstacle == specification.empty
+		|| specification.full == specification.empty)
+	{
+		specification.valid = false;
+		return (specification);
+	}
+	first_line.current = first_line.end - 4;
+	e = 0;
+	specification.number_of_lines = 0;
+	while (first_line.start <= first_line.current)
+		specification.number_of_lines += ft_ctoi(*first_line.current--) * ft_power(10, e++);
+	if (specification.number_of_lines + 1 != ft_count_char(map_string, '\n'))
+	{
+		specification.valid = false;
+		return (specification);
+	}
+	specification.valid = true;
 	return (specification);
+}
+
+void	show_spec(t_specification specification)
+{
+	ft_putstr("\nempty = ");
+	ft_putchar(specification.empty);
+	ft_putstr("\nobstacle = ");
+	ft_putchar(specification.obstacle);
+	ft_putstr("\nfull = ");
+	ft_putchar(specification.full);
+	ft_putstr("\nnumber of lines = ");
+	ft_putsize(specification.number_of_lines);
 }

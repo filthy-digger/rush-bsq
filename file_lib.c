@@ -16,7 +16,7 @@ bool	check_open_file(int fd)
 {
 	if (fd == -1)
 	{
-		ft_puterr("invalid path");
+		ft_puterr("valid path");
 		return (false);
 	}
 	return (true);
