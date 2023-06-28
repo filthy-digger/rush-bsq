@@ -130,26 +130,16 @@ void				ft_putchar(char c);
 
 void				ft_putstr(const char *str);
 
-void				ft_putstrn(const char *str, size_t n);
-
-size_t				char_vec_length(t_char_vector vec);
-
 void				ft_putnbr_aux(int n);
 
 void				ft_putnbr(int nb);
 
-size_t				ft_count_char(const char *str, char chr);
-
 void				ft_puterr(char *error_detail);
-
-int					ft_strncmp(char *s1, char *s2, unsigned int n);
 
 int					ft_ctoi(char c);
 
 // Switch int to char in ASCII (+ 48)
 char				ft_itoc(int i);
-
-size_t				strnlen_until_char(const char *str, char c, size_t n);
 
 size_t				repeat_char_n(const char *str, char c, size_t n);
 
@@ -161,7 +151,7 @@ bool				check_open_file(int fd);
 
 char				*get_file_string(int fd, size_t file_size);
 
-void				*ft_memcpy(void *dst0, const void *src0, size_t size);
+void				*ft_mymemcpy(void *dst0, const void *src0, size_t size);
 
 void				get_map_obstacle_count(t_map map);
 
@@ -196,5 +186,5 @@ void				show_solution(t_solution solution, t_map map);
 
 const char			*ft_strchr(const char *str, char c);
 
-t_map				make_map(const char *map_string, bool isfile);
+t_map				make_map(const char *map_string);
 #endif

@@ -18,12 +18,6 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-// write string for n characters
-void	ft_putstrn(const char *str, size_t n)
-{
-	write(1, str, n);
-}
-
 // write '\0' terminated string
 void	ft_putstr(const char *str)
 {
@@ -36,7 +30,21 @@ void	ft_puterr(char *error_detail)
 	write(2, error_detail, ft_strlen(error_detail));
 }
 
-void	ft_putvec(t_char_vector vec)
+void	print_map(t_map map)
 {
-	ft_putstrn(vec.start, char_vec_length(vec));
+	int	j;
+	int	i;
+
+	i = 0;
+	while (i < map.spec.number_of_lines)
+	{
+		j = 0;
+		while (j < map.spec.line_length)
+		{
+			ft_putchar(map.lines[i][j]);
+			j++;
+		}
+		i++;
+		ft_putchar('\n');
+	}
 }

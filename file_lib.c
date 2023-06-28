@@ -104,7 +104,7 @@ char	*get_stdin_string(void)
 			exit(1);
 		}
 		new_map_string = malloc(file_size + 1);
-		ft_memcpy(new_map_string, map_string, file_size);
+		ft_mymemcpy(new_map_string, map_string, file_size);
 		last_read_status = read(0, new_map_string + file_size, 1);
 		free(map_string);
 		map_string = new_map_string;

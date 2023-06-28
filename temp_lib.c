@@ -43,8 +43,8 @@ void	ft_putnbr(int nb)
 
 void	ft_putsize(size_t size)
 {
-	size_t r;
-	size_t q;
+	size_t	r;
+	size_t	q;
 
 	q = size / 10;
 	r = size % 10;

@@ -12,11 +12,6 @@
 
 #include "lib.h"
 
-size_t	char_vec_length(t_char_vector vec)
-{
-	return (vec.end - vec.start);
-}
-
 unsigned long	ft_power(unsigned int b, unsigned int e)
 {
 	if (e == 0)

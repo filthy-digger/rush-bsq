@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 				return (1);
 			}
 			map_string = get_file_string(fd, file_size);
-			map = make_map(map_string, true);
+			map = make_map(map_string);
 			if (map.valid)
 			{
 				get_map_obstacle_count(map);
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		map_string = get_stdin_string();
-		map = make_map(map_string, true);
+		map = make_map(map_string);
 		if (map.valid)
 		{
 			get_map_obstacle_count(map);

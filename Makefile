@@ -23,7 +23,8 @@ SRCS = main.c\
  ft_memcpy.c\
  lib.c\
  map_lib.c\
- spec_lib.c
+ spec_lib.c\
+ solver.c
 
 HEADERS = lib.h
 FILES = $(SRCS) $(HEADERS)

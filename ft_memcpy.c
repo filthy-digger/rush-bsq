@@ -13,7 +13,7 @@
 #include "lib.h"
 
 // copy from address src to address dst without managing overlap
-void	*ft_memcpy(void *dst0, const void *src0, size_t size)
+void	*ft_mymemcpy(void *dst0, const void *src0, size_t size)
 {
 	char		*dst;
 	const char	*src;
