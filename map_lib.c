@@ -44,17 +44,15 @@ void	map_line_loop(t_map *m, char *line_end, int i, int j)
 t_map	ft_make_map(char *map_string)
 {
 	t_map	map;
-	char	*line_end;
 
 	map.spec = ft_make_spec(map_string);
 	map.valid = false;
 	if (map.spec.valid)
 	{
-		line_end = ft_strchr(map_string, '\n');
 		(map).str = malloc((map).spec.n * sizeof(char *));
 		if (map.str == NULL)
 			return (map);
-		map_line_loop(&map, line_end, 0, 0);
+		map_line_loop(&map, ft_strchr(map_string, '\n'), 0, 0);
 	}
 	return (map);
 }

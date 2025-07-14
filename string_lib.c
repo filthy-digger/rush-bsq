@@ -24,6 +24,16 @@ size_t	ft_strlen(const char *str)
 	return (str - save);
 }
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+// write '\0' terminated string
+void	ft_putstr(const char *str)
+{
+	write(1, str, ft_strlen(str));
+}
 char	*ft_strchr(char *str, char c)
 {
 	while (*str != '\0' && *str != c)
