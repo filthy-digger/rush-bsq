@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_lib.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agabasov <agabasov@student.42lausanne      +#+  +:+       +#+        */
+/*   By: argabaso <argabaso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 09:23:47 by agabasov          #+#    #+#             */
-/*   Updated: 2023/06/25 09:23:48 by agabasov         ###   ########.fr       */
+/*   Updated: 2025/07/14 22:24:31 by argabaso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ size_t	ft_strlen(const char *str)
 	return (str - save);
 }
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-// write '\0' terminated string
-void	ft_putstr(const char *str)
-{
-	write(1, str, ft_strlen(str));
-}
 char	*ft_strchr(char *str, char c)
 {
 	while (*str != '\0' && *str != c)
